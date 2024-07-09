@@ -3,7 +3,8 @@
 const Footer = () => {
     return (
         <div className="bg-[#2A7CC7] ">
-            <footer className=" flex flex-col md:flex-row justify-between max-w-[1400px] mx-auto p-5 text-base-content ">
+            <footer className=" flex flex-col md:flex-row justify-between  max-w-[1400px] mx-auto p-5 text-base-content h-[200px]">
+
                 <div className="text-white flex flex-col">
                     <header className="font-bold">Services</header>
                     <a>Branding</a>
@@ -33,6 +34,9 @@ const Footer = () => {
                         <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
                     </div>
                 </nav>
+            </footer>
+            <footer className="flex justify-center items-center p-5 text-white">
+                @2024 Copyright:SchoolManagement.com
             </footer>
 
 

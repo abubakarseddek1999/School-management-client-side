@@ -1,3 +1,4 @@
+import CountUp from 'react-countup';
 
 const Stats = () => {
     const stats = [
@@ -31,7 +32,9 @@ const Stats = () => {
                     {stats.map((stat, index) => (
                         <div key={index} className="flex flex-col items-center">
                             <div className="text-3xl mb-4">{stat.icon}</div>
-                            <div className="text-4xl font-bold">{stat.value}+</div>
+
+                            <CountUp className='text-2xl' end={stat.value} duration={30}/>
+                            {/* <div className="text-4xl font-bold">{stat.value}+</div> */}
                             <div className="text-lg font-bold text-bla">{stat.label}</div>
                         </div>
                     ))}

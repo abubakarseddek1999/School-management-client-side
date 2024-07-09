@@ -1,19 +1,19 @@
 import { useState } from "react";
-
+import logo from "../../assets/image/logo.png"
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   console.log(isOpen);
 
   return (
-    <div className="relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('your-image-url.jpg')` }}>
-      <nav className="bg-gray-400 bg-opacity-50 backdrop-filter backdrop-blur-lg fixed w-full">
+    <div className=" relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('your-image-url.jpg')` }}>
+      <nav className="bg-gray-400 bg-opacity-50 backdrop-filter backdrop-blur-lg fixed w-full p-2">
         <div className="max-w-[1400px] mx-auto px-2 lg:px-0">
           <div className="flex items-center justify-between h-16">
 
-            {/* left side  */}
+            {/* left side logo */}
             <div className="flex items-center">
-            {/* <img className="w-[50px] h-[50px] rounded-full mr-2" src="https://i.postimg.cc/ZK64GFyn/letter-n-logo-design-for-business-and-company-identity-with-luxury-concept-free-vector.jpg" alt="" />  */}
-              <div className="text-black text-lg font-bold "> SCHOOL-WEB</div>
+            <img className="w-[70px] h-[70px]  rounded-full mr-2" src={logo} alt="" /> 
+              {/* <div className="text-black text-lg font-bold "> SCHOOL-WEB</div> */}
             </div>
 
 
