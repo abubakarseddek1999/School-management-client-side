@@ -69,7 +69,7 @@ const About = () => {
     return (
         <div className='py-20 md:py-20 lg:py-14 '>
             {/* Banner */}
-            <div className='w-full h-[400px] md:h-[600px] lg:h-[750px] flex justify-center items-center' style={{
+            <div className='hidden md:block w-100% h-[400px] md:h-[600px] lg:h-[750px]  md:justify-center items-center bg-contain md:bg-cover' style={{
                 backgroundImage: `url(${img1})`,
                 backgroundRepeat: "no-repeat",
                 // backgroundSize: 'cover',
@@ -79,6 +79,7 @@ const About = () => {
             >
 
             </div>
+
             {/* About School */}
             <div className="max-w-[1400px] mx-auto">
                 <div className="flex flex-col md:flex-row items-start p-5 gap-5 space-y-8 ">
