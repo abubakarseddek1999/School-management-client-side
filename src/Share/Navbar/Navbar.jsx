@@ -5,7 +5,7 @@ const Navbar = () => {
   console.log(isOpen);
 
   return (
-    <div className=" relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('your-image-url.jpg')` }}>
+    <div className="z-50 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('your-image-url.jpg')` }}>
       <nav className="bg-gray-400 bg-opacity-50 backdrop-filter backdrop-blur-lg fixed w-full p-2">
         <div className="max-w-[1400px] mx-auto px-2 lg:px-0">
           <div className="flex items-center justify-between h-16">
@@ -43,7 +43,7 @@ const Navbar = () => {
                 <a href="/" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Home</a>
                 <a href="/about" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">About</a>
                 <a href="#" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Services</a>
-                <a href="#" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                <a href="/contact" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                 <a href="#" className="text-white bg-yellow-600 hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Get Started</a>
               </div>
             </div>
@@ -57,7 +57,7 @@ const Navbar = () => {
               <a href="/" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Home</a>
               <a href="/about" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">About</a>
               <a href="#" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Services</a>
-              <a href="#" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+              <a href="/contact" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
               <a href="#" className="text-yellow-400 bg-yellow-600 hover:bg-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Get Started</a>
             </div>
           </div>
