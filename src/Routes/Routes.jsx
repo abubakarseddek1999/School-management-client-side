@@ -5,6 +5,7 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
+import Admission from "../Pages/Admission/Admission";
 
 
 
@@ -24,6 +25,10 @@ import Contact from "../Pages/Contact/Contact";
         {
             path: '/contact',
             element:<Contact></Contact>
+        },
+        {
+            path: '/admission',
+            element:<Admission></Admission>
         }
       ]
     },
