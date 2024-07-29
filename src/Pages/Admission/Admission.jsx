@@ -1,12 +1,23 @@
 /* eslint-disable react/no-unescaped-entities */
-
+import { FaPaintRoller } from "react-icons/fa";
 import { useState } from "react";
+import RightSidebar from "./RightSidebar";
 
 
 const Admission = () => {
     const [leavingCertificate, setLeavingCertificate] = useState(null);
     const [markList, setMarkList] = useState(null);
     const [medicalCertificate, setMedicalCertificate] = useState(null);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const [pageColor, setPageColor] = useState("#367c96");
+    const [formColor, setFormColor] = useState("#ffffff");
+    const [fontColor, setFontColor] = useState("#005875");
+    const [inputBackground, setInputBackground] = useState("#ffffff");
+    console.log(pageColor);
+    console.log(formColor);
+    console.log(fontColor);
+    console.log("inputBackground",inputBackground);
 
     const handleFileUpload = (e, setFile) => {
         const file = e.target.files[0];
@@ -14,14 +25,20 @@ const Admission = () => {
             setFile(file);
         }
     };
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
     return (
 
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 py-28 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl w-full space-y-8 p-10 bg-white rounded-xl shadow-lg">
+        <div className="min-h-screen flex items-center justify-center py-28 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: inputBackground }}>
+
+            <div className="max-w-6xl w-full space-y-8 p-10 mt-5 border rounded-xl shadow-lg" style={{ backgroundColor: formColor }}>
                 {/* Form title */}
                 <h2 className="text-center text-3xl font-extrabold text-gray-900">School Admission Form</h2>
 
-                <form className="mt-8 space-y-6">
+                <form className="mt-10 space-y-6">
 
                     <div className="rounded-md shadow-sm ">
                         {/* first name and last name */}
@@ -241,6 +258,25 @@ const Admission = () => {
                     </div>
                 </form>
             </div>
+
+            <div className="absolute top-0 right-0 p-4">
+                <button
+                    onClick={toggleSidebar}
+                    className="text-2xl text-gray-500 hover:text-gray-700 focus:outline-none"
+                >
+                   <FaPaintRoller  className="text-6xl mt-20 text-blue-500"/>
+                </button>
+            </div>
+
+            <RightSidebar
+            isOpen={isSidebarOpen}
+            onClose={toggleSidebar}
+            setPageColor={setPageColor}
+            setFormColor={setFormColor}
+            setFontColor={setFontColor}
+            setInputBackground={setInputBackground}
+            />
+
         </div>
     );
 };
