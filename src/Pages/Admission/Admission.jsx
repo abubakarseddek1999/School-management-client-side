@@ -1,7 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import { useState } from "react";
+
 
 const Admission = () => {
+    const [leavingCertificate, setLeavingCertificate] = useState(null);
+    const [markList, setMarkList] = useState(null);
+    const [medicalCertificate, setMedicalCertificate] = useState(null);
+
+    const handleFileUpload = (e, setFile) => {
+        const file = e.target.files[0];
+        if (file) {
+            setFile(file);
+        }
+    };
     return (
 
         <div className="min-h-screen flex items-center justify-center bg-gray-100 py-28 px-4 sm:px-6 lg:px-8">
@@ -16,12 +28,12 @@ const Admission = () => {
                         <div className="grid md:grid-cols-2 gap-4 mb-10">
                             <div>
                                 <label htmlFor="first-name" className="sr-only">Pupil's First Name</label>
-                                <input id="first-name" name="first-name" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="" />
+                                <input id="first-name" name="first-name" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md " placeholder="" />
                                 <p className="text-sm m-1 text-gray-600">first Name</p>
                             </div>
                             <div>
                                 <label htmlFor="last-name" className="sr-only">Pupil's Last Name</label>
-                                <input id="last-name" name="last-name" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="" />
+                                <input id="last-name" name="last-name" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="" />
                                 <p className="text-sm m-1 text-gray-600">Last Name</p>
                             </div>
                         </div>
@@ -30,11 +42,11 @@ const Admission = () => {
                         <div className="grid md:grid-cols-2 gap-4 mb-10">
                             <div>
                                 <label htmlFor="dob" className="">Student's Date of Birth</label>
-                                <input id="dob" name="dob" type="date" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
+                                <input id="dob" name="dob" type="date" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" />
                             </div>
                             <div>
                                 <label htmlFor="place-of-birth" className="">Place of Birth</label>
-                                <input id="place-of-birth" name="place-of-birth" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Place of Birth" />
+                                <input id="place-of-birth" name="place-of-birth" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Place of Birth" />
                             </div>
                         </div>
 
@@ -43,7 +55,7 @@ const Admission = () => {
                             <div>
                                 <label htmlFor="religion" className="">Religion</label>
                                 {/* todo set dropdown icon in input*/}
-                                <select id="religion" name="religion" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                                <select id="religion" name="religion" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md">
                                     <option value="">Please Select</option>
                                     <option value="hindu">Hindu</option>
                                     <option value="muslim">Muslim</option>
@@ -55,7 +67,7 @@ const Admission = () => {
 
                             <div>
                                 <label htmlFor="gender" className="">Gender</label>
-                                <select id="gender" name="gender" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                                <select id="gender" name="gender" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md">
                                     <option value="">Please Select</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -67,31 +79,31 @@ const Admission = () => {
                         <div className="grid md:grid-cols-2 gap-4 mt-4">
                             <div>
                                 <label htmlFor="religion" className="">Nationality</label>
-                                <input name="Nationality" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="" />
+                                <input name="Nationality" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="" />
                             </div>
                         </div>
 
                         {/* Residential Address */}
                         <div className="mt-4">
                             <label htmlFor="residential-address" className="">Residential Address</label>
-                            <input id="residential-address" name="residential-address" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Residential Address" />
+                            <input id="residential-address" name="residential-address" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Residential Address" />
                         </div>
 
                         {/* Correspondent Addres */}
                         <div className="mt-4">
                             <label htmlFor="correspondent-address" className="">Correspondent Address</label>
-                            <input id="correspondent-address" name="correspondent-address" type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Correspondent Address (if different)" />
+                            <input id="correspondent-address" name="correspondent-address" type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Correspondent Address (if different)" />
                         </div>
 
                         <div className="mt-4">
                             <label htmlFor="last-school" className="">Name of Last School</label>
-                            <input id="last-school" name="last-school" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Name of Last School" />
+                            <input id="last-school" name="last-school" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Name of Last School" />
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-4 mt-4">
                             <div>
                                 <label htmlFor="medium-of-instruction" className="">Medium of Instruction</label>
-                                <select id="medium-of-instruction" name="medium-of-instruction" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                                <select id="medium-of-instruction" name="medium-of-instruction" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md">
                                     <option value="">Please Select</option>
                                     <option value="english">English</option>
                                     <option value="hindi">Hindi</option>
@@ -100,7 +112,7 @@ const Admission = () => {
                             </div>
                             <div>
                                 <label htmlFor="standard" className="">Standard</label>
-                                <select id="standard" name="standard" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                                <select id="standard" name="standard" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md">
                                     <option value="">Please Select</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -122,7 +134,7 @@ const Admission = () => {
                         <div className="mt-4">
                             <div>
                                 <label htmlFor="reason-for-leaving" className="">Reason for Leaving Last School</label>
-                                <input id="reason-for-leaving" name="reason-for-leaving" type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Reason for Leaving Last School" />
+                                <input id="reason-for-leaving" name="reason-for-leaving" type="text" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Reason for Leaving Last School" />
                             </div>
 
 
@@ -161,54 +173,56 @@ const Admission = () => {
                         <div className="grid md:grid-cols-2 gap-4 mt-4">
                             <div>
                                 <label htmlFor="guardian-name" className="">Local Guardian Name</label>
-                                <input id="guardian-name" name="guardian-name" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Local Guardian Name" />
+                                <input id="guardian-name" name="guardian-name" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Local Guardian Name" />
                             </div>
                             <div>
                                 <label htmlFor="guardian-occupation" className="">Local Guardian Occupation</label>
-                                <input id="guardian-occupation" name="guardian-occupation" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Local Guardian Occupation" />
+                                <input id="guardian-occupation" name="guardian-occupation" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Local Guardian Occupation" />
                             </div>
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-4 mt-4">
                             <div>
                                 <label htmlFor="guardian-email" className="">Local Guardian Email</label>
-                                <input id="guardian-email" name="guardian-email" type="email" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Local Guardian Email" />
+                                <input id="guardian-email" name="guardian-email" type="email" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Local Guardian Email" />
                             </div>
                             <div>
                                 <label htmlFor="guardian-phone" className="">Local Guardian Phone Number</label>
-                                <input id="guardian-phone" name="guardian-phone" type="tel" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Local Guardian Phone Number" />
+                                <input id="guardian-phone" name="guardian-phone" type="tel" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Local Guardian Phone Number" />
                             </div>
                         </div>
 
+                        {/* Attach Scan copy of Leaving Certificate */}
                         <div className="mt-4">
                             <label htmlFor="leaving-certificate" className="">Attach Scan copy of Leaving Certificate</label>
                             <div className="flex items-center justify-center w-full">
-                                <label className="flex flex-col items-center w-full px-4  py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer ">
+                                <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
-                                    <span className="mt-2 text-base leading-normal">Upload a File</span>
-                                    <input id="leaving-certificate" name="leaving-certificate" type="file" className="hidden" />
+                                    <span className="mt-2 text-base leading-normal">{leavingCertificate ? leavingCertificate.name : "Upload a File"}</span>
+                                    <input id="leaving-certificate" name="leaving-certificate" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setLeavingCertificate)} />
                                 </label>
                             </div>
                         </div>
-
+                        {/* Attach Scan copy of Mark-list / Report Card */}
                         <div className="mt-4">
                             <label htmlFor="mark-list" className="">Attach Scan copy of Mark-list / Report Card</label>
                             <div className="flex items-center justify-center w-full">
-                                <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer ">
+                                <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
-                                    <span className="mt-2 text-base leading-normal">Upload a File</span>
-                                    <input id="mark-list" name="mark-list" type="file" className="hidden" />
+                                    <span className="mt-2 text-base leading-normal">{markList ? markList.name : "Upload a File"}</span>
+                                    <input id="mark-list" name="mark-list" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setMarkList)} />
                                 </label>
                             </div>
                         </div>
 
+                        {/* Attach Scan copy of Medical Certificate */}
                         <div className="mt-4">
                             <label htmlFor="medical-certificate" className="">Attach Scan copy of Medical Certificate</label>
                             <div className="flex items-center justify-center w-full">
-                                <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer  ">
+                                <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
-                                    <span className="mt-2 text-base leading-normal">Upload a File</span>
-                                    <input id="medical-certificate" name="medical-certificate" type="file" className="hidden" />
+                                    <span className="mt-2 text-base leading-normal">{medicalCertificate ? medicalCertificate.name : "Upload a File"}</span>
+                                    <input id="medical-certificate" name="medical-certificate" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setMedicalCertificate)} />
                                 </label>
                             </div>
                         </div>
