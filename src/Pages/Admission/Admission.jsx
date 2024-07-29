@@ -6,7 +6,9 @@ const Admission = () => {
 
         <div className="min-h-screen flex items-center justify-center bg-gray-100 py-28 px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl w-full space-y-8 p-10 bg-white rounded-xl shadow-lg">
+                {/* Form title */}
                 <h2 className="text-center text-3xl font-extrabold text-gray-900">School Admission Form</h2>
+
                 <form className="mt-8 space-y-6">
 
                     <div className="rounded-md shadow-sm ">
