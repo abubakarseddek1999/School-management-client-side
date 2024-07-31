@@ -4,7 +4,7 @@ import ColorsTab from "./ColorsTab";
 
 
 const RightSidebar = ({ isOpen, onClose, setPageColor, setFormColor, setFontColor, setInputBackground }) => {
-    const [activeTab, setActiveTab] = useState("color");
+    const [activeTab, setActiveTab] = useState("colors");
 
     if (!isOpen) return null;
 

@@ -6,6 +6,7 @@ import Home from "../Pages/Home/Home/Home";
 import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
 import Admission from "../Pages/Admission/Admission";
+import InfoPage from "../Pages/Admission/InfoPge";
 
 
 
@@ -29,6 +30,10 @@ import Admission from "../Pages/Admission/Admission";
         {
             path: '/admission',
             element:<Admission></Admission>
+        },
+        {
+            path: '/infoPage',
+            element: <InfoPage></InfoPage>
         }
       ]
     },
