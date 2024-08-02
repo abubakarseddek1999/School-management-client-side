@@ -3,6 +3,7 @@ import { FaPaintRoller } from "react-icons/fa";
 import { useState } from "react";
 import RightSidebar from "./RightSidebar";
 import Modal from 'react-modal';
+import { Link } from "react-router-dom";
 Modal.setAppElement('#root');
 const Admission = () => {
     const [formData, setFormData] = useState({
@@ -553,9 +554,10 @@ const Admission = () => {
 
                         {/* submit button */}
                         <div className="mt-6 flex justify-end ">
-                            <button to="./InfoPage" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <Link to="/PreviewPage" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Submit Application
-                            </button>
+                            </Link>
+                          
                         </div>
 
                     </div>
