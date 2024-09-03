@@ -140,6 +140,17 @@ const PreviewPage = ({ formData }) => {
                             <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Present Address</h3>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
+                                    <p><strong>Village:</strong></p>
+                                </div>
+                                <div className="w-1/2">
+                                    <p>
+                                        :  Madla
+                                        {formData?.standard}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
+                                <div className="w-1/2">
                                     <p><strong>Post Code:</strong></p>
                                 </div>
                                 <div className="w-1/2">
@@ -176,6 +187,18 @@ const PreviewPage = ({ formData }) => {
                     <div className="w-1/2">
                         <div className=" ">
                             <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Permanent Address</h3>
+                            
+                            <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
+                                <div className="w-1/2">
+                                    <p><strong>Village:</strong></p>
+                                </div>
+                                <div className="w-1/2">
+                                    <p>
+                                        :  Madla
+                                        {formData?.standard}
+                                    </p>
+                                </div>
+                            </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
                                     <p><strong>Post Code:</strong></p>
@@ -273,7 +296,7 @@ const PreviewPage = ({ formData }) => {
                         </div>
                     </div>
 
-                    
+
                     <div className="w-1/2">
                         <div className="mb-6 ">
                             <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Guardian Information</h3>
@@ -308,7 +331,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p className="truncate">
-                                       : abubakarseddek1999@gamil.com {formData?.lastSchool}
+                                        : abubakarseddek1999@gamil.com {formData?.lastSchool}
 
                                     </p>
                                 </div>
