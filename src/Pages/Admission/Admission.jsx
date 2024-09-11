@@ -125,8 +125,6 @@ const Admission = () => {
 
     };
 
-
-
     return (
 
         <div className="min-h-screen flex items-center justify-center py-28 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: inputBackground }}>
@@ -253,29 +251,104 @@ const Admission = () => {
                         </div>
 
                         {/* Present Address */}
-                        <div className="mt-4">
-                            <label htmlFor="Present-address" className="">Present Address</label>
-                            <input
-                                id="Present-address"
-                                name="PresentAddress"
-                                type="text"
+                        <div className="grid md:grid-cols-2 gap-4 mt-4">
+                            <div>
+                                <div>
+                                    <label htmlFor="Present-address" className="font-bold">Present Address</label>
+                                    <p>District</p>
+                                    <input
+                                        id="District"
+                                        name="District"
+                                        type="text"
 
-                                // value={formData.PresentAddress}
-                                onChange={handleChange}
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Present Address" />
+                                        // value={formData.PresentAddress}
+                                        onChange={handleChange}
+                                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="District" />
+                                </div>
+                                <div>
+                                    <label htmlFor="Present-address" className="">Sub-District </label>
+                                    <input
+                                        id="Sub-District"
+                                        name="Sub-District"
+                                        type="text"
+
+                                        // value={formData.PresentAddress}
+                                        onChange={handleChange}
+                                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Sub-District" />
+                                </div>
+                                <div>
+                                    <label htmlFor="Present-address" className="">Village </label>
+                                    <input
+                                        id="Village"
+                                        name="Village"
+                                        type="text"
+
+                                        // value={formData.PresentAddress}
+                                        onChange={handleChange}
+                                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="village-name" />
+                                </div>
+                                <div>
+                                    <label htmlFor="Present-address" className="">Post-code </label>
+                                    <input
+                                        id="Present-address"
+                                        name="Post-code"
+                                        type="number"
+
+                                        // value={formData.PresentAddress}
+                                        onChange={handleChange}
+                                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="post-code " />
+                                </div>
+                            </div>
+                            {/* permanent Address */}
+                            <div>
+                                <div>
+                                    <label htmlFor="Present-address" className="font-bold">Permanent Address</label>
+                                    <p>District</p>
+                                    <input
+                                        id="District"
+                                        name="par-District"
+                                        type="text"
+
+                                        // value={formData.PresentAddress}
+                                        onChange={handleChange}
+                                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="District" />
+                                </div>
+                                <div>
+                                    <label htmlFor="Present-address" className="">Sub-District </label>
+                                    <input
+                                        id="Sub-District"
+                                        name="par-Sub-District"
+                                        type="text"
+
+                                        // value={formData.PresentAddress}
+                                        onChange={handleChange}
+                                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Sub-District" />
+                                </div>
+                                <div>
+                                    <label htmlFor="Present-address" className="">Village </label>
+                                    <input
+                                        id="Village"
+                                        name="par-Village"
+                                        type="text"
+
+                                        // value={formData.PresentAddress}
+                                        onChange={handleChange}
+                                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="village-name" />
+                                </div>
+                                <div>
+                                    <label htmlFor="Present-address" className="">Post-code </label>
+                                    <input
+                                        id="Present-address"
+                                        name="par-Post-code"
+                                        type="number"
+
+                                        // value={formData.PresentAddress}
+                                        onChange={handleChange}
+                                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="post-code " />
+                                </div>
+                            </div>
                         </div>
 
-                        {/* permanent Address */}
-                        <div className="mt-4">
-                            <label htmlFor="permanent address" className="">permanent Address</label>
-                            <input
-                                id="permanent address"
-                                name="permanentAddress"
-                                type="text"
-                                // value={formData.permanentAddress}
-                                onChange={handleChange}
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="permanent address (if different)" />
-                        </div>
 
                         {/* last-school */}
                         <div className="mt-4">
@@ -557,7 +630,7 @@ const Admission = () => {
                             <Link to="/PreviewPage" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Submit Application
                             </Link>
-                          
+
                         </div>
 
                     </div>
