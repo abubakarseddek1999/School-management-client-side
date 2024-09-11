@@ -255,7 +255,7 @@ const Admission = () => {
                             <div>
                                 <div>
                                     <label htmlFor="Present-address" className="font-bold">Present Address</label>
-                                    <p>District</p>
+                                    <p>District<span className="text-red-500 text-xl">*</span></p>
                                     <input
                                         id="District"
                                         name="District"
@@ -266,7 +266,7 @@ const Admission = () => {
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="District" />
                                 </div>
                                 <div>
-                                    <label htmlFor="Present-address" className="">Sub-District </label>
+                                    <label htmlFor="Present-address" className="">Sub-District<span className="text-red-500 text-xl">*</span> </label>
                                     <input
                                         id="Sub-District"
                                         name="Sub-District"
@@ -277,7 +277,7 @@ const Admission = () => {
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Sub-District" />
                                 </div>
                                 <div>
-                                    <label htmlFor="Present-address" className="">Village </label>
+                                    <label htmlFor="Present-address" className="">Village<span className="text-red-500 text-xl">*</span> </label>
                                     <input
                                         id="Village"
                                         name="Village"
