@@ -4,27 +4,60 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import html2canvas from 'html2canvas-pro';
 import jsPDF from 'jspdf';
+import Swal from "sweetalert2";
 
 
 
 const PreviewPage = ({ formData }) => {
     const [loader, setLoader] = useState(false);
 
-    const downloadPDF = async () => {
+    // const downloadPDF = async () => {
+    //     const capture = document.querySelector('.actual-receipt');
+    //     setLoader(true);
+    //     html2canvas(capture, {
+    //         backgroundColor: null, 
+    //         scale: 2, 
+    //         useCORS: true, 
+    //     }).then((canvas) => {
+    //         const imgData = canvas.toDataURL('img/png');
+    //         const doc = new jsPDF('p', 'mm', 'a4');
+    //         const componentWidth = doc.internal.pageSize.getWidth();
+    //         const componentHeight = doc.internal.pageSize.getHeight();
+    //         doc.addImage(imgData, 'PNG', 0, 0, componentWidth, componentHeight);
+    //         setLoader(false);
+    //         doc.save('receipt.pdf');
+    //     });
+    // }
+
+    const HandleConfirm = () => {
         const capture = document.querySelector('.actual-receipt');
-        setLoader(true);
-        html2canvas(capture, {
-            backgroundColor: null, // Prevent background from being captured
-            scale: 2, // Increase resolution if needed
-            useCORS: true, // Enable CORS for loading images
-        }).then((canvas) => {
-            const imgData = canvas.toDataURL('img/png');
-            const doc = new jsPDF('p', 'mm', 'a4');
-            const componentWidth = doc.internal.pageSize.getWidth();
-            const componentHeight = doc.internal.pageSize.getHeight();
-            doc.addImage(imgData, 'PNG', 0, 0, componentWidth, componentHeight);
-            setLoader(false);
-            doc.save('receipt.pdf');
+        Swal.fire({
+            title: "Do you want to Download this?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Download PDF",
+            denyButtonText: `Don't Download`
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                setLoader(true);
+                html2canvas(capture, {
+                    backgroundColor: null, // Prevent background from being captured
+                    scale: 2, // Increase resolution if needed
+                    useCORS: true, // Enable CORS for loading images
+                }).then((canvas) => {
+                    const imgData = canvas.toDataURL('img/png');
+                    const doc = new jsPDF('p', 'mm', 'a4');
+                    const componentWidth = doc.internal.pageSize.getWidth();
+                    const componentHeight = doc.internal.pageSize.getHeight();
+                    doc.addImage(imgData, 'PNG', 0, 0, componentWidth, componentHeight);
+                    setLoader(false);
+                    doc.save('receipt.pdf');
+                });
+                Swal.fire("Downloaded!", "", "success");
+            } else if (result.isDenied) {
+                Swal.fire("Document are not Download", "", "info");
+            }
         });
     }
 
@@ -396,11 +429,11 @@ const PreviewPage = ({ formData }) => {
             </div>
             {/* Download PDF Button */}
             <div className="mt-6 flex justify-end gap-4 max-w-[1000px] min-w-[600px] mx-auto">
-                <Link to="" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <Link to="" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={HandleConfirm}>
                     Confirm Submit
                 </Link>
 
-                <button className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" onClick={downloadPDF}
+                {/* <button className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" 
                     disabled={!(loader === false)}
                 >
                     {loader ? (
@@ -408,7 +441,7 @@ const PreviewPage = ({ formData }) => {
                     ) : (
                         <span>Download PDF</span>
                     )}
-                </button>
+                </button> */}
             </div>
 
         </div>
