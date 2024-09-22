@@ -147,8 +147,8 @@ const Admission = () => {
 
                                     // value={formData.firstName}
                                     onChange={handleChange}
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md " placeholder="" style={{ backgroundColor: inputBackground }} />
-                                <p className="text-sm m-1 text-gray-600">first Name</p>
+                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md " placeholder="First name" style={{ backgroundColor: inputBackground }} />
+                               
                             </div>
                             <div>
                                 <label htmlFor="last-name" className="">student's Last Name<span className="text-red-500 text-xl">*</span></label>
@@ -159,8 +159,7 @@ const Admission = () => {
 
                                     // value={formData.lastName}
                                     onChange={handleChange}
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="" style={{ backgroundColor: inputBackground }} />
-                                <p className="text-sm m-1 text-gray-600">Last Name</p>
+                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="last name" style={{ backgroundColor: inputBackground }} />
                             </div>
                         </div>
 

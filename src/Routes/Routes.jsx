@@ -7,6 +7,7 @@ import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
 import Admission from "../Pages/Admission/Admission";
 import PreviewPage from "../Pages/Admission/PreviewPage";
+import Classes from "../Pages/Classes/Classes";
 
 
 
@@ -34,6 +35,10 @@ import PreviewPage from "../Pages/Admission/PreviewPage";
         {
             path: '/PreviewPage',
             element: <PreviewPage></PreviewPage>
+        },
+        {
+            path: '/classes',
+            element: <Classes></Classes>
         }
       ]
     },
