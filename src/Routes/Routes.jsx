@@ -9,8 +9,6 @@ import Admission from "../Pages/Admission/Admission";
 import PreviewPage from "../Pages/Admission/PreviewPage";
 import Classes from "../Pages/Classes/Classes";
 
-
-
   export const router = createBrowserRouter([
     {
       path: "/",
