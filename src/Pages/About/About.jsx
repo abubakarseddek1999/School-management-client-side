@@ -69,16 +69,35 @@ const About = () => {
     return (
         <div className='py-20 md:py-20 lg:py-14 '>
             {/* Banner */}
-            <div className='hidden md:block w-100% h-[400px] md:h-[600px] lg:h-[780px]  md:justify-center items-center bg-contain md:bg-cover' style={{
-                backgroundImage: `url(${img1})`,
-                backgroundRepeat: "no-repeat",
-                // backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundSize: '100% 700px',
-            }}
-            >
+            {/* Banner */}
+            <div className='relative hidden md:block w-full h-[400px] md:h-[500px] lg:h-[780px] md:justify-center items-center bg-contain md:bg-cover'>
+    {/* Blurred background image (img1) */}
+    <div
+        className='absolute top-0 left-0 w-full h-full'
+        style={{
+            backgroundImage: `url(${img1})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: '100% 750px',
+            filter: 'blur(10px)', // Apply blur only to img1
+            zIndex: 1, // Make sure it's behind img2
+        }}
+    ></div>
 
-            </div>
+    {/* Clear foreground image (img2) */}
+    <div
+        className='relative w-full h-[400px] md:h-[500px] lg:h-[780px] md:justify-center items-center bg-contain md:bg-cover z-20'
+        style={{
+            backgroundImage: `url(${img1})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: '80% 750px',
+            zIndex: 2, // Ensure it's above the blurred image
+        }}
+    ></div>
+</div>
+
+
 
             {/* About School */}
             <div className="max-w-[1400px] mx-auto">
@@ -125,7 +144,7 @@ const About = () => {
                                 </div>
 
                             </div>
-                            <hr class="h-1 bg-blue-500 border-none transition-colors duration-300 hover:bg-amber-400 w-full mr-4" />
+                            <hr className="h-1 bg-blue-500 border-none transition-colors duration-300 hover:bg-amber-400 w-full mr-4" />
                         </div>
                         <div>
                             <div className='flex justify-between'>

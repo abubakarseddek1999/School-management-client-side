@@ -52,7 +52,7 @@ const Classes = () => {
     return (
         <div className="min-h-screen max-w-[1400px] mx-auto pt-24 mb-10 p-2">
 
-            <div className="flex justify-center gap-4 mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 gap-4 mb-6">
                 {/* Class Filter */}
                 <select
                     className="px-4 py-2 bg-white rounded-lg shadow-md"
@@ -108,13 +108,15 @@ const Classes = () => {
                 </select>
 
                 {/* Reset Filters Button */}
-                <div className="flex justify-center">
-                    <button
-                        className="px-6 py-2 bg-white rounded-lg shadow-md"
-                        onClick={resetFilters}
-                    >
-                        Reset Filters
-                    </button>
+                <div className="flex">
+                    <div className="">
+                        <div
+                            className="px-4 py-2 bg-white rounded-lg shadow-md"
+                            onClick={resetFilters}
+                        >
+                            Reset Filters
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -139,7 +141,7 @@ const Classes = () => {
                     ))
                 ) : (
                     <p className="text-gray-600 text-center col-span-full flex justify-center items-center">
-                      <img className=" w-[700px] h-[500px]" src="https://i.postimg.cc/0N9hgHxv/images-removebg-preview.png" alt="" />
+                        <img className=" w-[700px] h-[500px]" src="https://i.postimg.cc/0N9hgHxv/images-removebg-preview.png" alt="" />
                     </p>
                 )}
             </div>

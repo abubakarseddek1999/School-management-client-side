@@ -23,7 +23,7 @@ const About = () => {
                 <section className="flex justify-center md:w-1/2">
                     <img
                         className="rounded-lg shadow-md"
-                        src={image}// Replace this with the actual image URL
+                        src={image}
                         alt="Children studying at school"
                     />
                 </section>
