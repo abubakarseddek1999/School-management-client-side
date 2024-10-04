@@ -8,11 +8,13 @@ import Contact from "../Pages/Contact/Contact";
 import Admission from "../Pages/Admission/Admission";
 import PreviewPage from "../Pages/Admission/PreviewPage";
 import Classes from "../Pages/Classes/Classes";
+import NotFound from "../Pages/ErrorPage/NotFound";
 
   export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <NotFound></NotFound>,
       children:[
         {
             path: '/',

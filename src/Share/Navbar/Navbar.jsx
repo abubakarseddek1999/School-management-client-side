@@ -52,7 +52,6 @@ const Navbar = () => {
           </div>
         </div>
 
-
         {isOpen && (
           <div className="md:hidden h-screen" id="mobile-menu">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-white text-center">

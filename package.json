@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^10.13.2",
     "html-to-image": "^1.11.11",
     "html2canvas": "^1.4.1",
     "html2canvas-pro": "^1.5.8",
