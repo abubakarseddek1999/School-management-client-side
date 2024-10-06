@@ -46,7 +46,7 @@ const Navbar = () => {
                 <a href="/admission" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Admission</a>
                 <a href="/contact" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                 <a href="/dashboard" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-                <a href="#" className="text-white bg-yellow-600 hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Get Started</a>
+                <a href="/login" className="text-white bg-yellow-600 hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Login </a>
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@ const Navbar = () => {
               <a href="/admission" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Admission</a>
               <a href="/contact" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
               <a href="/dashboard" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-              <a href="#" className="text-yellow-400 bg-yellow-600 hover:bg-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Get Started</a>
+              <a href="/login" className="text-yellow-400 bg-yellow-600 hover:bg-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Login </a>
             </div>
           </div>
         )}

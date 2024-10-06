@@ -9,6 +9,8 @@ import Admission from "../Pages/Admission/Admission";
 import PreviewPage from "../Pages/Admission/PreviewPage";
 import Classes from "../Pages/Classes/Classes";
 import NotFound from "../Pages/ErrorPage/NotFound";
+import Login from "../Pages/Login/Login";
+import SignUp from "../Pages/Signup/SignUp";
 
   export const router = createBrowserRouter([
     {
@@ -39,6 +41,14 @@ import NotFound from "../Pages/ErrorPage/NotFound";
         {
             path: '/classes',
             element: <Classes></Classes>
+        },
+        {
+            path: '/login',
+            element: <Login></Login>
+        },
+        {
+            path: '/SignUP',
+            element: <SignUp></SignUp>
         }
       ]
     },

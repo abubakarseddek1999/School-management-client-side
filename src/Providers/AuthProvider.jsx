@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { createContext } from "react";
-import { applyActionCode, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
-const auth = getAuth(applyActionCode);
-
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { app } from "../Firebase/Firebase.config";
+import { GoogleAuthProvider } from "firebase/auth/web-extension";
+const auth = getAuth(app);
 
 export const AuthContext =createContext(null)
 
@@ -24,6 +25,10 @@ const AuthProvider = ({children}) => {
         setLoading(true);
         return signOut(auth);
     }
+    const signInWithGoogle = () => {
+        setLoading(true);
+        return signInWithPopup(auth, GoogleAuthProvider);
+    }
 
     useEffect (()=>{
        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
@@ -43,8 +48,7 @@ const AuthProvider = ({children}) => {
         createUser,
         signIn,
         logOut,
-
-
+        signInWithGoogle,
 
     }
 
