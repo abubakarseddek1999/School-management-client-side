@@ -3,10 +3,11 @@ import UseAuth from "../../Hooks/UseAuth";
 import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import login from "../../assets/image/login-img.png"
+import "./login.css"
 
 const Login = () => {
-    const {signIn, signInWithGoogle}=UseAuth()
-    const location =useLocation();
+    const { signIn, signInWithGoogle } = UseAuth()
+    const location = useLocation();
     const navigate = useNavigate();
 
     const handleLogin = e => {
@@ -21,7 +22,7 @@ const Login = () => {
                 alert('login success')
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
-             
+
 
             })
             .catch(error => console.log(error))
@@ -38,53 +39,54 @@ const Login = () => {
             })
             .catch(error => console.log(error.message))
     }
-    
+
     return (
-        <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row ">
-                <div className="text-center w-1/2 mr-14 lg:text-left">
-                    <img src={login} alt="" />
+        <div className="min-h-screen flex items-center justify-center bg-base-200 pt-16">
+            <div className="flex flex-col md:flex-row justify-center items-center h-full w-full">
+                <div className=" w-full md:w-1/2 h-full">
+                    <img className="m-2" src={login} alt="login" />
                 </div>
 
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-
-                    <form onSubmit={handleLogin} className="card-body">
-                        <h2 className='text-2xl font-bold text-center'> Sign in</h2>
+                <div className="p-5 m-5 rounded-2xl  w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100 h-full flex flex-col justify-center">
+                    <form onSubmit={handleLogin} className="w-full py-5">
+                        <h2 className="text-2xl font-bold text-center uppercase mb-5">Welcome Back </h2>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-bold">Email</span>
                             </label>
-                            <input type="email" placeholder="Your email" name='email' className="input input-bordered" required />
+                            <input type="email" placeholder="Your email" name="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-bold">Confirm Password</span>
                             </label>
-                            <input type="password" name='password' placeholder="Your password" className="input input-bordered" required />
+                            <input type="password" name="password" placeholder="Your password" className="input input-bordered" required />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover font-bold">Forgot password?</a>
                             </label>
                         </div>
-                        <div className="form-control mt-6">
-
-                            <input className="btn bg-[#3734ff] text-xl font-bold text-white" type="submit" value="Sign In" />
+                        
+                        <div className="form-control mt-2">
+                            <input className="p-2 rounded-md bg-[#3734ff] text-xl font-bold mb-2 text-white" type="submit" value="Sign In" />
                         </div>
-                        <div className='text-center'>
+
+                        <div className="text-center">
                             <p>Or Sign In with</p>
-                            <div className='flex justify-center gap-4 mt-2'>
-                                <Link><AiFillFacebook /> </Link>
-                                <Link onClick={handleGoogleSignIn}><FcGoogle /> </Link>
-                                <Link><AiFillInstagram /> </Link>
+                            <div className="flex justify-center gap-4 mt-2">
+                                <Link className="btn"><AiFillFacebook className="text-2xl"/></Link>
+                                <Link className="btn" onClick={handleGoogleSignIn}><FcGoogle className="text-2xl"/></Link>
+                                <Link className="btn"><AiFillInstagram className="text-2xl" /></Link>
                             </div>
-                            <div className='mt-3'>
-                                <p >New to Car Doctors? <Link to="/signup" className='text-orange-500 font-bold '>Sign up</Link></p>
+                            <div className="mt-3">
+                                <p>New to Car Doctors? <Link to="/signup" className="text-orange-500 font-bold">Sign up</Link></p>
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
+
+
     );
 };
 
