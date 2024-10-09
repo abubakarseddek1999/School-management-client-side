@@ -47,42 +47,47 @@ const Login = () => {
                     <img className="m-2" src={login} alt="login" />
                 </div>
 
-                <div className="p-5 m-5 rounded-2xl  w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100 h-full flex flex-col justify-center">
-                    <form onSubmit={handleLogin} className="w-full py-5">
-                        <h2 className="text-2xl font-bold text-center uppercase mb-5">Welcome Back </h2>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text font-bold">Email</span>
-                            </label>
-                            <input type="email" placeholder="Your email" name="email" className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text font-bold">Confirm Password</span>
-                            </label>
-                            <input type="password" name="password" placeholder="Your password" className="input input-bordered" required />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover font-bold">Forgot password?</a>
-                            </label>
-                        </div>
-                        
-                        <div className="form-control mt-2">
-                            <input className="p-2 rounded-md bg-[#3734ff] text-xl font-bold mb-2 text-white" type="submit" value="Sign In" />
-                        </div>
+               
+                    <div className="card p-1 m-5 rounded-2xl  w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100 h-full flex flex-col justify-center">
 
-                        <div className="text-center">
-                            <p>Or Sign In with</p>
-                            <div className="flex justify-center gap-4 mt-2">
-                                <Link className="btn"><AiFillFacebook className="text-2xl"/></Link>
-                                <Link className="btn" onClick={handleGoogleSignIn}><FcGoogle className="text-2xl"/></Link>
-                                <Link className="btn"><AiFillInstagram className="text-2xl" /></Link>
+                        <form onSubmit={handleLogin} className="w-full py-10 p-5 z-10 bg-white rounded-xl">
+                            <h2 className="text-2xl font-bold text-center uppercase mb-5">Welcome Back </h2>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text font-bold">Email</span>
+                                </label>
+                                <input type="email" placeholder="Your email" name="email" className="input input-bordered" required />
                             </div>
-                            <div className="mt-3">
-                                <p>New to Car Doctors? <Link to="/signup" className="text-orange-500 font-bold">Sign up</Link></p>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text font-bold">Confirm Password</span>
+                                </label>
+                                <input type="password" name="password" placeholder="Your password" className="input input-bordered" required />
+                                <label className="label">
+                                    <a href="#" className="label-text-alt link link-hover font-bold">Forgot password?</a>
+                                </label>
                             </div>
-                        </div>
-                    </form>
-                </div>
+
+                            <div className="form-control mt-2 m-1">
+                                <input className="p-2 rounded-md bg-[#3734ff] hover:bg-[#161551] transition text-xl font-bold mb-2 text-white shadow-xl" type="submit" value="Sign In" />
+                            </div>
+
+                            <div className="text-center">
+                                <p>Or Sign In with</p>
+                                <div className="flex justify-center gap-4 mt-2">
+                                    <Link className="btn loginbtn"><AiFillFacebook className="text-2xl" /></Link>
+                                    <Link className="btn loginbtn" onClick={handleGoogleSignIn}><FcGoogle className="text-2xl" /></Link>
+                                    <Link className="btn loginbtn"><AiFillInstagram className="text-2xl" /></Link>
+                                </div>
+                                <div className="mt-3">
+                                    <p>New to Car Doctors? <Link to="/signup" className="text-orange-500 font-bold">Sign up</Link></p>
+                                </div>
+                            </div>
+                        </form>
+                        {/* Blob animation in the background */}
+                        <div className="blob"></div>
+                    </div>
+                
             </div>
         </div>
 

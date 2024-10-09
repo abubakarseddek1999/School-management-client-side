@@ -1,6 +1,6 @@
 
   /* From Uiverse.io by CYBWEBALI */ 
-.btn {
+.loginbtn {
     background: #e3edf7;
     border-radius: 10px;
     box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
@@ -10,7 +10,7 @@
     transition: transform 0.5s;
   }
   
-  .btn:hover {
+  .loginbtn:hover {
     box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
             inset -4px -4px 6px -1px rgba(255,255,255,0.7),
             -0.5px -0.5px 0px rgba(255,255,255,1),
@@ -20,13 +20,77 @@
     transform: translateY(0.5em);
   }
   
-  .btn svg {
+  .loginbtn svg {
     transition: transform 0.5s;
   }
   
-  .btn:hover svg {
+  .loginbtn:hover svg {
     transform: scale(0.9);
     fill: #333333;
   }
+
   
+
+  /* Blob Animation and Card Style from Uiverse.io */
+.card {
+    position: relative;
+    height: auto;
+    border-radius: 14px;
+    z-index: 1111;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+    background-color: #fff; /* Adjust as needed */
+  }
+  
+  /* Background of the card */
+  .bg {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    border-radius: 10px;
+    /* overflow: hidden; */
+    outline: 2px solid white;
+  }
+  
+  /* Blob animation */
+  .blob {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #4274fc; /* Your desired color */
+    opacity: 1;
+    filter: blur(12px);
+    animation: blob-bounce 9s infinite ease; /* Shortened animation to 3s */
+  }
+  
+  @keyframes blob-bounce {
+    0% {
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+    25% {
+      transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+    }
+    50% {
+      transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+    }
+    75% {
+      transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+    }
+    100% {
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+  }
   
