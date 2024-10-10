@@ -1,13 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
-import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
+import { AiFillEye, AiFillEyeInvisible, AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import login from "../../assets/image/login-img.png"
 import "./login.css"
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const Login = () => {
     const { signIn, signInWithGoogle } = UseAuth()
+    const [showPassword, setShowPassword] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -74,14 +76,25 @@ const Login = () => {
                                 <input type="email" placeholder="Your email" name="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text font-bold">Confirm Password</span>
-                                </label>
-                                <input type="password" name="password" placeholder="Your password" className="input input-bordered" required />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover font-bold">Forgot password?</a>
-                                </label>
+                            <label className="label">
+                                <span className="label-text font-bold">Confirm Password</span>
+                            </label>
+
+
+
+                            <div className="relative">
+                                <input type={showPassword ? "text" : "password"} name="password" placeholder="Your password" className="input input-bordered w-full" required />
+
+                                <span className="absolute top-3 right-2" onClick={() => setShowPassword(!showPassword)}>
+                                    {
+                                        showPassword ? <AiFillEyeInvisible></AiFillEyeInvisible> : <AiFillEye></AiFillEye>
+                                    }
+                                </span>
                             </div>
+                            
+
+
+                        </div>
 
                             <div className="form-control mt-2 m-1">
                                 <input className="p-2 rounded-md bg-[#3734ff] hover:bg-[#161551] transition text-xl font-bold mb-2 text-white shadow-xl" type="submit" value="Sign In" />
