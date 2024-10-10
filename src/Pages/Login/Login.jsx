@@ -22,6 +22,7 @@ const Login = () => {
                 alert('login success')
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
+                navigate(location?.state ? location.state : '/');
 
 
             })

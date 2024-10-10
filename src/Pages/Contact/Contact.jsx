@@ -1,4 +1,4 @@
-import React from 'react';
+
 import banner from "../../assets/image/AboutPage/About-banner.png"
 const Contact = () => {
     return (
