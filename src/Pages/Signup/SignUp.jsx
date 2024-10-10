@@ -1,12 +1,16 @@
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../../assets/image/login-img.png"
-import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
+import { AiFillEye, AiFillEyeInvisible, AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import UseAuth from "../../Hooks/UseAuth";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
     const { signInWithGoogle, createUser } = UseAuth()
+    const [registerError, setRegisterError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -15,17 +19,48 @@ const SignUp = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+        const accepted = form.terms.checked;
         console.log(email, password);
 
+        // reset eroor 
+        setRegisterError('')
+       
+
+
+
+        if (password.length < 6) {
+            setRegisterError('password should be at 6 characters or long')
+            return;
+        }
+        else if (!/[A-Z]/.test(password)) {
+            setRegisterError('your password should have at least one upper case character ')
+            return;
+        }
+        else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+            setRegisterError('your password should have at least one special character ')
+            return;
+        }
+        else if (!accepted) {
+            setRegisterError('please accept our terms and condition !')
+            return;
+        }
+
         createUser(email, password)
-        .then(result => {
-            alert('Create success')
-            const createInUser = result.user;
-            console.log(createInUser);
+            .then(result => {
+                const createInUser = result.user;
+                console.log(createInUser);
+                navigate(location?.state ? location.state : '/');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Create account Success",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
 
 
-        })
-        .catch(error => console.log(error))
+            })
+            .catch(error => console.log(error))
 
     }
     const handleGoogleSignIn = () => {
@@ -33,6 +68,13 @@ const SignUp = () => {
             .then(result => {
                 console.log(result.user);
                 navigate(location?.state ? location.state : '/');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Create account Success",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
 
 
             })
@@ -50,8 +92,8 @@ const SignUp = () => {
 
                 <div className="card p-1 m-5 rounded-2xl  w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100 h-full flex flex-col justify-center">
 
-                    <form onSubmit={HandleCreatUser} className="w-full py-10 p-5 z-10 bg-white rounded-xl">
-                        <h2 className="text-2xl font-bold text-center uppercase mb-5">Welcome </h2>
+                    <form onSubmit={HandleCreatUser} className="w-full py-2 p-5 z-10 bg-white rounded-xl">
+                        <h2 className="text-2xl font-bold text-center uppercase mb-2">Welcome </h2>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-bold">Name</span>
@@ -68,14 +110,31 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text font-bold">Confirm Password</span>
                             </label>
-                            <input type="password" name="password" placeholder="Your password" className="input input-bordered" required />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover font-bold">Forgot password?</a>
-                            </label>
+
+
+
+                            <div className="relative">
+                                <input type={showPassword ? "text" : "password"} name="password" placeholder="Your password" className="input input-bordered w-full" required />
+
+                                <span className="absolute top-3 right-2" onClick={() => setShowPassword(!showPassword)}>
+                                    {
+                                        showPassword ? <AiFillEyeInvisible></AiFillEyeInvisible> : <AiFillEye></AiFillEye>
+                                    }
+                                </span>
+                            </div>
+                            {
+                                registerError && <p className="text-red-300 font-bold">{registerError}</p>
+                            }
+
+
+                        </div>
+                        <div className="mt-2 mb-4">
+                            <input type="checkbox" name="terms" id="terms" />
+                            <label className="ml-2 mb-4" htmlFor="terms"> Accept our  <a href="#"> terms and Conditions</a></label>
                         </div>
 
-                        <div className="form-control mt-2 m-1">
-                            <input className="p-2 rounded-md bg-[#3734ff] hover:bg-[#161551] transition text-xl font-bold mb-2 text-white shadow-xl" type="submit" value="Sign Up" />
+                        <div className="form-control mt-2 ">
+                            <input className="p-2 cursor-pointer rounded-md bg-[#3734ff] hover:bg-[#161551] transition text-xl font-bold mb-2 text-white shadow-xl" type="submit" value="Sign Up" />
                         </div>
 
                         <div className="text-center">

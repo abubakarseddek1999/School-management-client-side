@@ -4,6 +4,7 @@ import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import login from "../../assets/image/login-img.png"
 import "./login.css"
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { signIn, signInWithGoogle } = UseAuth()
@@ -19,10 +20,16 @@ const Login = () => {
 
         signIn(email, password)
             .then(result => {
-                alert('login success')
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
                 navigate(location?.state ? location.state : '/');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "login Success",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
 
 
             })
@@ -35,6 +42,13 @@ const Login = () => {
             .then(result => {
                 console.log(result.user);
                 navigate(location?.state ? location.state : '/');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "login Success",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
 
 
             })
