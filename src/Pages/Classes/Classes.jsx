@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaPlayCircle } from "react-icons/fa";
 
 
 const Classes = () => {
@@ -126,17 +127,26 @@ const Classes = () => {
                     filteredClasses.map((cls) => (
                         <div
                             key={cls.id}
-                            className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                            className="bg-white  rounded-2xl shadow-md hover:shadow-lg transition-shadow"
                         >
-                            <h2 className="text-xl font-semibold mb-2 text-gray-800">
-                                Class: {cls.class}
-                            </h2>
-                            <p className="text-gray-600">Subject: {cls.subject}</p>
-                            <p className="text-gray-600">Section: {cls.section}</p>
-                            <p className="text-gray-600">Version: {cls.version}</p>
-                            <p className="text-gray-600">
-                                Video: <a href={cls.video.link} className="text-blue-500">{cls.video.title}</a> ({cls.video.length})
-                            </p>
+                            <div className="relative">
+                                <img className="w-full rounded-t-lg" src="https://i.postimg.cc/V6s0r0d6/ezgif-1-073d75dcde.jpg" alt="" />
+                                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <FaPlayCircle className="text-5xl font-bold cursor-pointer" />
+                                </div>
+                            </div>
+
+                            <div className="p-6">
+                                <h2 className="text-xl font-semibold mb-2 text-gray-800">
+                                    Class: {cls.class}
+                                </h2>
+                                <p className="text-gray-600">Subject: {cls.subject}</p>
+                                <p className="text-gray-600">Section: {cls.section}</p>
+                                <p className="text-gray-600">Version: {cls.version}</p>
+                                <p className="text-gray-600">
+                                    Video: <a href={cls.video.link} className="text-blue-500">{cls.video.title}</a> ({cls.video.length})
+                                </p>
+                            </div>
                         </div>
                     ))
                 ) : (
