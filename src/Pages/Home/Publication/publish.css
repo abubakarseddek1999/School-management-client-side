@@ -1,0 +1,91 @@
+.publication-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px; /* Make the card wider to fit the large book */
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    /* transform: translateY(-10px);  */
+  }
+  
+  .publication-card:hover {
+    transform: translateY(-20px); /* Hover lift effect */
+  }
+  
+  .book-container {
+    perspective: 1800px; /* Increase perspective for larger size */
+    margin: 0 auto;
+  }
+  
+  .book {
+    width: 300px; /* Increase the book's width */
+    height: 450px; /* Increase the book's height */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+  }
+  
+  .book:hover {
+    transform: rotateY(-30deg); /* Keep the hover rotation effect */
+  }
+  
+  .book-cover {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateZ(40px); /* Increase the book cover's depth */
+    z-index: 2;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .book-pages {
+    width: 100%;
+    height: 100%;
+    background: #f4f4f4;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateZ(30px); /* Adjusted page depth */
+    z-index: 1;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .book-spine {
+    width: 30px; /* Increase the spine width */
+    height: 100%;
+    background: #ccc;
+    position: absolute;
+    left: -30px;
+    top: 0;
+    transform: rotateY(-90deg) translateZ(0);
+    transform-origin: left center;
+    z-index: 0;
+    box-shadow: -2px 0 6px rgba(0, 0, 0, 0.1);
+    border-right: 5px solid rgba(0, 0, 0, 0.15);
+  }
+  
+  .text-content {
+    text-align: center;
+    margin-top: 20px; /* Space between the book and the text */
+  }
+  
+  .text-content h3 {
+    margin-top: 10px;
+  }
+  
+  .text-content p {
+    margin-bottom: 10px;
+  }
+  
