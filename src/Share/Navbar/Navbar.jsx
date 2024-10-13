@@ -40,12 +40,12 @@ const Navbar = () => {
 
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4 text-white">
-                <a href="/" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                <a href="/about" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                <a href="/classes" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Classes</a>
-                <a href="/admission" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Admission</a>
-                <a href="/contact" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-                <a href="/dashboard" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                <a href="/" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                <a href="/about" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                <a href="/classes" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Classes</a>
+                <a href="/admission" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Admission</a>
+                <a href="/contact" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                <a href="/dashboard" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                 <a href="/login" className="text-white bg-yellow-600 hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Login </a>
               </div>
             </div>
@@ -55,12 +55,12 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden h-screen" id="mobile-menu">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-white text-center">
-              <a href="/" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-              <a href="/about" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">About</a>
-              <a href="/classes" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">C;asses</a>
-              <a href="/admission" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Admission</a>
-              <a href="/contact" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
-              <a href="/dashboard" className="text-black lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+              <a href="/" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+              <a href="/about" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">About</a>
+              <a href="/classes" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">C;asses</a>
+              <a href="/admission" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Admission</a>
+              <a href="/contact" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+              <a href="/dashboard" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
               <a href="/login" className="text-yellow-400 bg-yellow-600 hover:bg-yellow-500 block px-3 py-2 rounded-md text-base font-medium">Login </a>
             </div>
           </div>
