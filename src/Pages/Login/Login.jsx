@@ -31,7 +31,7 @@ const Login = () => {
                     title: "login Success",
                     showConfirmButton: false,
                     timer: 1500
-                  });
+                });
 
 
             })
@@ -50,7 +50,7 @@ const Login = () => {
                     title: "login Success",
                     showConfirmButton: false,
                     timer: 1500
-                  });
+                });
 
 
             })
@@ -64,26 +64,33 @@ const Login = () => {
                     <img className="m-2" src={login} alt="login" />
                 </div>
 
-               
-                    <div className="card p-1 m-5 rounded-2xl  w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100 h-full flex flex-col justify-center">
 
-                        <form onSubmit={handleLogin} className="w-full py-10 p-5 z-10 bg-white rounded-xl">
-                            <h2 className="text-2xl font-bold text-center uppercase mb-5">Welcome Back </h2>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text font-bold">Email</span>
-                                </label>
-                                <input type="email" placeholder="Your email" name="email" className="input input-bordered" required />
-                            </div>
-                            <div className="form-control">
+                <div className="card p-1 m-5 rounded-2xl  w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100 h-full flex flex-col justify-center">
+
+                    <form onSubmit={handleLogin} className="w-full py-10 p-5 z-10 bg-white rounded-xl">
+                        <h2 className="text-2xl font-bold text-center uppercase mb-5">Welcome Back </h2>
+                        <div className="form-control mb-1">
                             <label className="label">
-                                <span className="label-text font-bold">Confirm Password</span>
+                                <label className="block text-gray-700 font-bold" htmlFor="email">Email</label>
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Your email"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:black focus:border-white transition duration-150 ease-in-out focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]"
+                                required
+                            />
+                        </div>
+
+
+                        <div className="form-control mb-4">
+                            <label className="label">
+                                <span className="block text-gray-700 font-bold">Confirm Password</span>
                             </label>
 
-
-
                             <div className="relative">
-                                <input type={showPassword ? "text" : "password"} name="password" placeholder="Your password" className="input input-bordered w-full" required />
+                                <input type={showPassword ? "text" : "password"} name="password" placeholder="Your password" className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:black focus:border-white transition duration-150 ease-in-out focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]" required />
 
                                 <span className="absolute top-3 right-2" onClick={() => setShowPassword(!showPassword)}>
                                     {
@@ -91,31 +98,31 @@ const Login = () => {
                                     }
                                 </span>
                             </div>
-                            
+
 
 
                         </div>
 
-                            <div className="form-control mt-2 m-1">
-                                <input className="p-2 rounded-md bg-[#3734ff] hover:bg-[#161551] transition text-xl font-bold mb-2 text-white shadow-xl" type="submit" value="Sign In" />
-                            </div>
+                        <div className="form-control mt-2 m-1">
+                            <input className="p-2 rounded-md bg-[#3734ff] hover:bg-[#161551] transition text-xl font-bold mb-2 text-white shadow-xl" type="submit" value="Sign In" />
+                        </div>
 
-                            <div className="text-center">
-                                <p>Or Sign In with</p>
-                                <div className="flex justify-center gap-4 mt-2">
-                                    <Link className="btn loginbtn"><AiFillFacebook className="text-2xl" /></Link>
-                                    <Link className="btn loginbtn" onClick={handleGoogleSignIn}><FcGoogle className="text-2xl" /></Link>
-                                    <Link className="btn loginbtn"><AiFillInstagram className="text-2xl" /></Link>
-                                </div>
-                                <div className="mt-3">
-                                    <p>New to Car Doctors? <Link to="/signup" className="text-orange-500 font-bold">Sign up</Link></p>
-                                </div>
+                        <div className="text-center">
+                            <p>Or Sign In with</p>
+                            <div className="flex justify-center gap-4 mt-2">
+                                <Link className="btn loginbtn"><AiFillFacebook className="text-2xl" /></Link>
+                                <Link className="btn loginbtn" onClick={handleGoogleSignIn}><FcGoogle className="text-2xl" /></Link>
+                                <Link className="btn loginbtn"><AiFillInstagram className="text-2xl" /></Link>
                             </div>
-                        </form>
-                        {/* Blob animation in the background */}
-                        <div className="blob"></div>
-                    </div>
-                
+                            <div className="mt-3">
+                                <p>New to Car Doctors? <Link to="/signup" className="text-orange-500 font-bold">Sign up</Link></p>
+                            </div>
+                        </div>
+                    </form>
+                    {/* Blob animation in the background */}
+                    <div className="blob"></div>
+                </div>
+
             </div>
         </div>
 
