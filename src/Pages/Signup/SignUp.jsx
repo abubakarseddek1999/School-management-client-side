@@ -98,13 +98,13 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text font-bold">Name</span>
                             </label>
-                            <input type="name" placeholder="Your name" name="name" className="input input-bordered" required />
+                            <input type="name" placeholder="Your name" name="name" className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:black focus:border-white transition duration-150 ease-in-out focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-bold">Email</span>
                             </label>
-                            <input type="email" placeholder="Your email" name="email" className="input input-bordered" required />
+                            <input type="email" placeholder="Your email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:black focus:border-white transition duration-150 ease-in-out focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -114,7 +114,7 @@ const SignUp = () => {
 
 
                             <div className="relative">
-                                <input type={showPassword ? "text" : "password"} name="password" placeholder="Your password" className="input input-bordered w-full" required />
+                                <input type={showPassword ? "text" : "password"} name="password" placeholder="Your password" className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:black focus:border-white transition duration-150 ease-in-out focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)] w-full" required />
 
                                 <span className="absolute top-3 right-2" onClick={() => setShowPassword(!showPassword)}>
                                     {
