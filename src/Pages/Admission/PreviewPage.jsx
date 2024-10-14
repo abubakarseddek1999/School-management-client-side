@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
 import logo from "../../assets/image/logo.png"
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import html2canvas from 'html2canvas-pro';
 import jsPDF from 'jspdf';
 import Swal from "sweetalert2";
+import { FormDataContext } from "../../Providers/FormDataProvider";
 
 
-
-const PreviewPage = ({ formData }) => {
+const PreviewPage = () => {
+    const Data = useContext(FormDataContext)
+    const FormData = Data?.formData;
+    console.log(FormData?.firstName);
     const [loader, setLoader] = useState(false);
 
     // const downloadPDF = async () => {
@@ -96,8 +99,8 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Abu bakar
-                                        {formData?.firstName}
+                                        : {FormData?.firstName} {FormData?.lastName}
+
                                     </p>
                                 </div>
                             </div>
@@ -107,7 +110,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : 18-11-1999{formData?.dob}
+                                        : {FormData?.dob}
 
                                     </p>
                                 </div>
@@ -118,8 +121,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Brahmanbaria, Bangladesh
-                                        {formData?.placeOfBirth}
+                                        : {FormData?.placeOfBirth}
 
                                     </p>
                                 </div>
@@ -138,8 +140,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Islam
-                                        {formData?.religion}
+                                        : {FormData?.religion}
 
                                     </p>
                                 </div>
@@ -150,8 +151,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Male
-                                        {formData?.gender}
+                                        : {FormData?.gender}
 
                                     </p>
                                 </div>
@@ -162,8 +162,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Bangladesh
-                                        {formData?.nationality}
+                                        : {FormData?.nationality}
 
                                     </p>
                                 </div>
@@ -174,8 +173,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : O+
-                                        {formData?.blood}
+                                        : {FormData?.blood}
 
                                     </p>
                                 </div>
@@ -201,7 +199,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        :  Madla
+                                        : {FormData?.Village}
 
                                     </p>
                                 </div>
@@ -212,7 +210,8 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        :  3500
+                                        :
+                                        {FormData?.Post_code}
 
                                     </p>
                                 </div>
@@ -223,7 +222,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : kasba
+                                        : {FormData?.Sub_District}
 
                                     </p>
                                 </div>
@@ -234,14 +233,14 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Brahmanbaria
+                                        : {FormData?.District}
 
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 ">
                         <div className=" ">
                             <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Permanent Address</h3>
 
@@ -251,7 +250,8 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        :  Madla
+                                        :  {FormData?.par_Village}
+
 
                                     </p>
                                 </div>
@@ -262,7 +262,8 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        :  3500
+                                        : {FormData?.par_Post_code}
+
 
                                     </p>
                                 </div>
@@ -273,7 +274,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : kasba
+                                        : {FormData?.par_Sub_District}
 
                                     </p>
                                 </div>
@@ -284,7 +285,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Brahmanbaria
+                                        : {FormData?.par_District}
 
                                     </p>
                                 </div>
@@ -307,7 +308,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Shere Bangla High School
+                                        : {FormData?.lastSchool}
 
 
                                     </p>
@@ -319,7 +320,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Night
+                                        : {FormData?.medium}
 
 
                                     </p>
@@ -331,7 +332,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : 10
+                                        : {FormData?.standard}
 
 
                                     </p>
@@ -343,7 +344,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Passed
+                                        : {FormData?.lastSchoolResult}
 
                                     </p>
                                 </div>
@@ -363,7 +364,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : MD.Haronor Rashid
+                                        : {FormData?.guardianName}
 
 
                                     </p>
@@ -375,7 +376,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p>
-                                        : Farmer
+                                        : {FormData?.guardianOccupation}
 
 
                                     </p>
@@ -387,7 +388,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p className="truncate">
-                                        : abubakarseddek1999@gamil.com
+                                        : {FormData?.guardianEmail}
 
                                     </p>
                                 </div>
@@ -398,8 +399,7 @@ const PreviewPage = ({ formData }) => {
                                 </div>
                                 <div className="w-1/2">
                                     <p className="truncate">
-                                        : +8801728306504
-                                        {formData?.lastSchool}
+                                        : {FormData?.guardianPhone}
 
                                     </p>
                                 </div>
@@ -409,39 +409,41 @@ const PreviewPage = ({ formData }) => {
                     </div>
                 </div>
 
-                {/* <div className="flex justify-between">
+                {/* Reason for Leaving Last School */}
+                <div className="flex justify-between gap-5">
                     <div className="w-1/2">
                         <div className="mb-6 ">
-                            <h3 className="text-lg font-semibold mb-5">Reason for Leaving Last School</h3>
+                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Reason for Leaving Last School</h3>
 
-                            <div className="flex justify-start">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, unde aut. Molestias commodi voluptatibus alias dicta incidunt autem dolor quo!</p>
+                            <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1 min-h-28 break-words">
+                                <p className="break-all">{FormData?.reasonLeaving}</p>
                             </div>
+
 
 
                         </div>
                     </div>
-                </div> */}
 
+
+                    <div className="w-1/2">
+                        <div className="mb-6 ">
+                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Your certificates </h3>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
                 {/* Todo show Certificate */}
-
-
             </div>
+
             {/* Download PDF Button */}
             <div className="mt-6 flex justify-end gap-4 max-w-[1000px] min-w-[600px] mx-auto">
                 <Link to="" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={HandleConfirm}>
                     Confirm Submit
                 </Link>
 
-                {/* <button className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" 
-                    disabled={!(loader === false)}
-                >
-                    {loader ? (
-                        <span>Downloading</span>
-                    ) : (
-                        <span>Download PDF</span>
-                    )}
-                </button> */}
             </div>
 
         </div>

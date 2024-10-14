@@ -1,32 +1,36 @@
 /* eslint-disable react/no-unescaped-entities */
 import { FaPaintRoller } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import RightSidebar from "./RightSidebar";
 import Modal from 'react-modal';
 import { Link } from "react-router-dom";
+import { FormDataContext } from "../../Providers/FormDataProvider";
 Modal.setAppElement('#root');
+
+
 const Admission = () => {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        dob: '',
-        placeOfBirth: '',
-        religion: '',
-        gender: '',
-        nationality: '',
-        PresentAddress: '',
-        permanentAddress: '',
-        lastSchool: '',
-        mediumOfInstruction: '',
-        standard: '',
-        reasonForLeaving: '',
-        lastSchoolResult: '',
-        admissionSoughtAs: '',
-        guardianName: '',
-        guardianOccupation: '',
-        guardianEmail: '',
-        guardianPhone: ''
-    });
+    // const [formData, setFormData] = useState({
+    //     firstName: '',
+    //     lastName: '',
+    //     dob: '',
+    //     placeOfBirth: '',
+    //     religion: '',
+    //     gender: '',
+    //     nationality: '',
+    //     PresentAddress: '',
+    //     permanentAddress: '',
+    //     lastSchool: '',
+    //     mediumOfInstruction: '',
+    //     standard: '',
+    //     reasonForLeaving: '',
+    //     lastSchoolResult: '',
+    //     admissionSoughtAs: '',
+    //     guardianName: '',
+    //     guardianOccupation: '',
+    //     guardianEmail: '',
+    //     guardianPhone: ''
+    // });
+    const { formData, setFormData } = useContext(FormDataContext);
 
 
     const [leavingCertificate, setLeavingCertificate] = useState(null);
@@ -38,9 +42,9 @@ const Admission = () => {
     const [formColor, setFormColor] = useState("#ffffff");
     const [fontColor, setFontColor] = useState("#005875");
     const [inputBackground, setInputBackground] = useState("#ffffff");
-    console.log(pageColor);
+    // console.log(pageColor);
     // console.log(formColor);
-    console.log(fontColor);
+    // console.log(fontColor);
     // console.log("inputBackground", inputBackground);
 
     const handleFileUpload = (e, setFile) => {
@@ -62,7 +66,6 @@ const Admission = () => {
         });
     };
 
-
     const handleFileChange = (e) => {
         const { name, files } = e.target;
         if (files.length > 0) {
@@ -79,53 +82,16 @@ const Admission = () => {
         }
     };
 
-
     const handleSubmit = e => {
         e.preventDefault();
-        const form = e.target;
-        const firstName = form.firstName.value;
-        const lastName = form.lastName.value;
-        const Dob = form.dob.value;
-        const placeOfBirth = form.placeOfBirth.value;
-        const gender = form.gender.value;
-        const religion = form.religion.value;
-        const nationality = form.nationality.value;
-        const PresentAddress = form.PresentAddress.value;
-        const permanentAddress = form.permanentAddress.value;
-        const lastSchool = form.lastSchool.value;
-        const medium = form.medium.value;
-        const reasonLeaving = form.reasonLeaving.value;
-        const admissionSoughtAs = form.admissionSoughtAs.value;
-        const guardianName = form.guardianName.value;
-        const guardianOccupation = form.guardianOccupation.value;
-        const guardianEmail = form.guardianEmail.value;
-        const guardianPhone = form.guardianPhone.value;
-        const blood = form.blood.value;
-
-        console.log(
-            "firstName: " + firstName,
-            "lastName: " + lastName,
-            "Dob: " + Dob,
-            "placeOfBirth: " + placeOfBirth,
-            "gender: " + gender,
-            "nationality: " + nationality,
-            "religion: " + religion,
-            "PresentAddress: " + PresentAddress,
-            "permanentAddress: " + permanentAddress,
-            "guardianEmail: " + guardianEmail,
-            "guardianName: " + guardianName,
-            "guardianPhone: " + guardianPhone,
-            "lastSchool: " + lastSchool,
-            "medium: " + medium,
-            "reasonLeaving: " + reasonLeaving,
-            "guardianOccupation: " + guardianOccupation,
-            "admissionSoughtAs: " + admissionSoughtAs,
-            "blood: " + blood
-        );
+        // const form = e.target;
+        // console.log(formData);
+        setFormData(formData);
 
     };
 
     return (
+
 
         <div className="min-h-screen flex items-center justify-center py-28 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: inputBackground }}>
 
@@ -133,7 +99,7 @@ const Admission = () => {
                 {/* Form title */}
                 <h2 className="text-center text-3xl font-extrabold text-gray-900">School Admission Form</h2>
 
-                <form className="mt-10 space-y-6" onSubmit={handleSubmit}>
+                <form className="mt-10 space-y-6">
 
                     <div className="rounded-md shadow-sm ">
                         {/* first name and last name */}
@@ -141,14 +107,13 @@ const Admission = () => {
                             <div>
                                 <label htmlFor="firstName" className="">student's First Name<span className="text-red-500 text-xl">*</span></label>
                                 <input
-                                    id="first-name"
                                     name="firstName"
                                     type="text"
 
                                     // value={formData.firstName}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md " placeholder="First name" style={{ backgroundColor: inputBackground }} />
-                               
+
                             </div>
                             <div>
                                 <label htmlFor="last-name" className="">student's Last Name<span className="text-red-500 text-xl">*</span></label>
@@ -268,7 +233,7 @@ const Admission = () => {
                                     <label htmlFor="Present-address" className="">Sub-District<span className="text-red-500 text-xl">*</span> </label>
                                     <input
                                         id="Sub-District"
-                                        name="Sub-District"
+                                        name="Sub_District"
                                         type="text"
 
                                         // value={formData.PresentAddress}
@@ -290,7 +255,7 @@ const Admission = () => {
                                     <label htmlFor="Present-address" className="">Post-code </label>
                                     <input
                                         id="Present-address"
-                                        name="Post-code"
+                                        name="Post_code"
                                         type="number"
 
                                         // value={formData.PresentAddress}
@@ -305,7 +270,7 @@ const Admission = () => {
                                     <p>District</p>
                                     <input
                                         id="District"
-                                        name="par-District"
+                                        name="par_District"
                                         type="text"
 
                                         // value={formData.PresentAddress}
@@ -315,8 +280,8 @@ const Admission = () => {
                                 <div>
                                     <label htmlFor="Present-address" className="">Sub-District </label>
                                     <input
-                                        id="Sub-District"
-                                        name="par-Sub-District"
+                                        id="Sub_District"
+                                        name="par_Sub_District"
                                         type="text"
 
                                         // value={formData.PresentAddress}
@@ -327,7 +292,7 @@ const Admission = () => {
                                     <label htmlFor="Present-address" className="">Village </label>
                                     <input
                                         id="Village"
-                                        name="par-Village"
+                                        name="par_Village"
                                         type="text"
 
                                         // value={formData.PresentAddress}
@@ -338,7 +303,7 @@ const Admission = () => {
                                     <label htmlFor="Present-address" className="">Post-code </label>
                                     <input
                                         id="Present-address"
-                                        name="par-Post-code"
+                                        name="par_Post_code"
                                         type="number"
 
                                         // value={formData.PresentAddress}
@@ -557,7 +522,7 @@ const Admission = () => {
                         {/* Attach Scan copy of Medical Certificate */}
                         <div className="mt-4">
                             <label htmlFor="medical-certificate" className="">Attach Scan copy of Medical Certificate<span className="text-red-500 text-xl">*</span></label>
-                            <div className="flex items-center justify-center w-full">
+                            <div name="medicalCertificate" onChange={handleFileChange} className="flex items-center justify-center w-full">
                                 <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
                                     <span className="mt-2 text-base leading-normal">{medicalCertificate ? medicalCertificate.name : "Upload a File"}</span>
@@ -625,7 +590,7 @@ const Admission = () => {
                         </div>
 
                         {/* submit button */}
-                        <div className="mt-6 flex justify-end ">
+                        <div onClick={handleSubmit} className="mt-6 flex justify-end ">
                             <Link to="/PreviewPage" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Submit Application
                             </Link>
@@ -656,6 +621,7 @@ const Admission = () => {
 
 
         </div>
+
     );
 };
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import logo from "../../assets/image/logo.png"
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
+  // console.log(isOpen);
 
   return (
     <div className="z-50 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('your-image-url.jpg')` }}>
