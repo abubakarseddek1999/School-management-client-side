@@ -3,7 +3,7 @@ import { FaPaintRoller } from "react-icons/fa";
 import { useContext, useState } from "react";
 import RightSidebar from "./RightSidebar";
 import Modal from 'react-modal';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FormDataContext } from "../../Providers/FormDataProvider";
 Modal.setAppElement('#root');
 
@@ -33,7 +33,7 @@ const Admission = () => {
     const { formData, setFormData } = useContext(FormDataContext);
     // console.log(formData);
 
-
+    const navigate = useNavigate();
     const [leavingCertificate, setLeavingCertificate] = useState(null);
     const [markList, setMarkList] = useState(null);
     const [medicalCertificate, setMedicalCertificate] = useState(null);
@@ -85,9 +85,20 @@ const Admission = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        const form = e.target;
         // const form = e.target;
         // console.log(formData);
         setFormData(formData);
+        console.log(form.reportValidity());
+
+        if (form.checkValidity()) {
+            // You can process form data here if needed
+            console.log(formData); // Example: Log form data
+            // Navigate to the Preview Page
+            navigate('/PreviewPage');
+        } else {
+            form.reportValidity(); // Show validation errors
+        }
 
     };
 
@@ -100,7 +111,7 @@ const Admission = () => {
                 {/* Form title */}
                 <h2 className="text-center text-3xl font-extrabold text-gray-900">School Admission Form</h2>
 
-                <form className="mt-10 space-y-6">
+                <form className="mt-10 space-y-6" onSubmit={handleSubmit}>
 
                     <div className="rounded-md shadow-sm ">
                         {/* first name and last name */}
@@ -110,7 +121,7 @@ const Admission = () => {
                                 <input
                                     name="firstName"
                                     type="text"
-
+                                    required
                                     // value={formData.firstName}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md " placeholder="First name" style={{ backgroundColor: inputBackground }} />
@@ -500,7 +511,7 @@ const Admission = () => {
                         {/* Attach Scan copy of Leaving Certificate */}
                         <div className="mt-4">
                             <label htmlFor="leaving-certificate" className="">Attach Scan copy of Leaving Certificate<span className="text-red-500 text-xl">*</span></label>
-                            <div name="Leaving_certificate"  onChange={handleFileChange} className="flex items-center justify-center w-full">
+                            <div name="Leaving_certificate" onChange={handleFileChange} className="flex items-center justify-center w-full">
                                 <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
                                     <span className="mt-2 text-base leading-normal">{leavingCertificate ? leavingCertificate.name : "Upload a File"}</span>
@@ -589,14 +600,20 @@ const Admission = () => {
                             <input id="agree" name="agree" type="checkbox" className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
                             <label htmlFor="agree" className="ml-2 block text-sm leading-5 text-gray-900">I agree to the <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">terms & conditions</a></label>
                         </div>
+                        {/* Submit button */}
+                        <div className="mt-6 flex justify-end">
+                            <button type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Submit Application
+                            </button>
+                        </div>
 
                         {/* submit button */}
-                        <div onClick={handleSubmit} className="mt-6 flex justify-end ">
+                        {/* <div onClick={handleSubmit} className="mt-6 flex justify-end ">
                             <Link to="/PreviewPage" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Submit Application
                             </Link>
 
-                        </div>
+                        </div> */}
 
                     </div>
                 </form>
