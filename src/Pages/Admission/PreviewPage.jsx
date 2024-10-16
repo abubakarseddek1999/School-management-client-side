@@ -104,11 +104,11 @@ const PreviewPage = () => {
                 <div className="flex justify-between gap-5">
                     <div className="w-1/2">
                         <div className="mb-6">
-                            <h3 className=" md:text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Basic Information</h3>
+                            <h3 className=" md:text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1 pl-2">Basic Information</h3>
 
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Full Name</strong></p>
+                                    <p className="pl-1"><strong>Full Name</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -119,7 +119,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Date of Birth</strong></p>
+                                    <p className="pl-1"><strong>Date of Birth</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -130,7 +130,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Place of Birth</strong></p>
+                                    <p className="pl-1"><strong>Place of Birth</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -202,10 +202,10 @@ const PreviewPage = () => {
                 <div className="flex justify-between gap-5">
                     <div className="w-1/2">
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Present Address</h3>
+                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1 pl-2">Present Address</h3>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Village:</strong></p>
+                                    <p className="pl-1"><strong>Village:</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -216,7 +216,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Post Code:</strong></p>
+                                    <p className="pl-1"><strong>Post Code:</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -228,7 +228,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Sub District</strong></p>
+                                    <p className="pl-1"><strong>Sub District</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -239,7 +239,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>District</strong></p>
+                                    <p className="pl-1"><strong>District</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -252,11 +252,11 @@ const PreviewPage = () => {
                     </div>
                     <div className="w-1/2 ">
                         <div className=" ">
-                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Permanent Address</h3>
+                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1 pl-2">Permanent Address</h3>
 
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Village:</strong></p>
+                                    <p className="pl-1"><strong>Village:</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -268,7 +268,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Post Code:</strong></p>
+                                    <p className="pl-1"><strong>Post Code:</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -280,7 +280,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Sub District</strong></p>
+                                    <p className="pl-1"><strong>Sub District</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -291,7 +291,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>District</strong></p>
+                                    <p className="pl-1"><strong>District</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -310,11 +310,11 @@ const PreviewPage = () => {
                 <div className="flex justify-between gap-5">
                     <div className="w-1/2">
                         <div className="mb-6 ">
-                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Educational Information</h3>
+                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1 pl-2">Educational Information</h3>
 
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Last School</strong></p>
+                                    <p className="pl-1"><strong>Last School</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -326,7 +326,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Medium of Instruction</strong></p>
+                                    <p className="pl-1"><strong>Medium of Instruction</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -338,7 +338,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Standard</strong></p>
+                                    <p className="pl-1"><strong>Standard</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -350,7 +350,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Last School Result</strong></p>
+                                    <p className="pl-1"><strong>Last School Result</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -366,11 +366,11 @@ const PreviewPage = () => {
 
                     <div className="w-1/2">
                         <div className="mb-6 ">
-                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Guardian Information</h3>
+                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1 pl-2">Guardian Information</h3>
 
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong> Guardian Name</strong></p>
+                                    <p className="pl-1"><strong> Guardian Name</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -382,7 +382,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong> Guardian Occupation</strong></p>
+                                    <p className="pl-1"><strong> Guardian Occupation</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -394,7 +394,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong> Guardian Email</strong></p>
+                                    <p className="pl-1"><strong> Guardian Email</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p className="truncate">
@@ -405,7 +405,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong> Guardian Phone Number</strong></p>
+                                    <p className="pl-1"><strong> Guardian Phone Number</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p className="truncate">
@@ -423,7 +423,7 @@ const PreviewPage = () => {
                 <div className="flex justify-between gap-5">
                     <div className="w-1/2">
                         <div className="mb-6 ">
-                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Reason for Leaving Last School</h3>
+                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1 pl-2">Reason for Leaving Last School</h3>
 
                             <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1 min-h-48 break-words">
                                 <p className="break-all">{FormData?.reasonLeaving}</p>
@@ -437,7 +437,7 @@ const PreviewPage = () => {
 
                     <div className="w-1/2">
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">
+                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1 pl-2">
                                 Your certificates
                             </h3>
                             <div className="flex justify-between">
