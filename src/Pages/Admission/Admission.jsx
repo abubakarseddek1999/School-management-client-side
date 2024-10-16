@@ -31,6 +31,7 @@ const Admission = () => {
     //     guardianPhone: ''
     // });
     const { formData, setFormData } = useContext(FormDataContext);
+    // console.log(formData);
 
 
     const [leavingCertificate, setLeavingCertificate] = useState(null);
@@ -499,34 +500,34 @@ const Admission = () => {
                         {/* Attach Scan copy of Leaving Certificate */}
                         <div className="mt-4">
                             <label htmlFor="leaving-certificate" className="">Attach Scan copy of Leaving Certificate<span className="text-red-500 text-xl">*</span></label>
-                            <div className="flex items-center justify-center w-full">
+                            <div name="Leaving_certificate"  onChange={handleFileChange} className="flex items-center justify-center w-full">
                                 <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
                                     <span className="mt-2 text-base leading-normal">{leavingCertificate ? leavingCertificate.name : "Upload a File"}</span>
-                                    <input id="leaving-certificate" name="leaving-certificate" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setLeavingCertificate)} />
+                                    <input id="leaving_certificate" name="leaving_certificate" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setLeavingCertificate)} />
                                 </label>
                             </div>
                         </div>
                         {/* Attach Scan copy of Mark-list / Report Card */}
                         <div className="mt-4">
                             <label htmlFor="mark-list" className="">Attach Scan copy of Mark-list / Report Card<span className="text-red-500 text-xl">*</span></label>
-                            <div className="flex items-center justify-center w-full">
+                            <div name="mark_list" onChange={handleFileChange} className="flex items-center justify-center w-full">
                                 <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
                                     <span className="mt-2 text-base leading-normal">{markList ? markList.name : "Upload a File"}</span>
-                                    <input id="mark-list" name="mark-list" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setMarkList)} />
+                                    <input id="mark-list" name="mark_list" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setMarkList)} />
                                 </label>
                             </div>
                         </div>
 
                         {/* Attach Scan copy of Medical Certificate */}
                         <div className="mt-4">
-                            <label htmlFor="medical-certificate" className="">Attach Scan copy of Medical Certificate<span className="text-red-500 text-xl">*</span></label>
+                            <label htmlFor="medical_certificate" className="">Attach Scan copy of Medical Certificate<span className="text-red-500 text-xl">*</span></label>
                             <div name="medicalCertificate" onChange={handleFileChange} className="flex items-center justify-center w-full">
                                 <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
                                     <span className="mt-2 text-base leading-normal">{medicalCertificate ? medicalCertificate.name : "Upload a File"}</span>
-                                    <input id="medical-certificate" name="medical-certificate" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setMedicalCertificate)} />
+                                    <input id="medical_certificate" name="medical_certificate" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setMedicalCertificate)} />
                                 </label>
                             </div>
                         </div>

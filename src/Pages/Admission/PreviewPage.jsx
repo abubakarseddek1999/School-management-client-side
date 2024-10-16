@@ -11,8 +11,20 @@ import { FormDataContext } from "../../Providers/FormDataProvider";
 const PreviewPage = () => {
     const Data = useContext(FormDataContext)
     const FormData = Data?.formData;
-    console.log(FormData?.firstName);
+    console.log(FormData);
     const [loader, setLoader] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedName, setSelectedName] = useState(null);
+
+    const handleImageClick = (imgSrc, name) => {
+        setSelectedImage(imgSrc);
+        setSelectedName(name);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedImage(null);
+        setSelectedName(null);
+    };
 
     // const downloadPDF = async () => {
     //     const capture = document.querySelector('.actual-receipt');
@@ -84,7 +96,8 @@ const PreviewPage = () => {
                         </div>
                     </div>
                     <div>
-                        <img className="w-[120px] h-[100px]" src="https://i.postimg.cc/Jncnqv60/abubakar.png" alt="" />
+                        {/* student image */}
+                        <img className="w-[120px] p-1 h-[100px]" src={FormData.studentPhotoPreview} alt="" />
                     </div>
                 </div>
 
@@ -133,10 +146,10 @@ const PreviewPage = () => {
 
                     <div className="w-1/2">
                         <div className="mb-6">
-                            <h3 className="md:text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Additional Information</h3>
+                            <h3 className="md:text-lg font-semibold bg-slate-200 p-2 rounded-md mb-1 ">Additional Information</h3>
                             <div className="flex justify-start gap-5 bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Religion</strong></p>
+                                    <p className="pl-1"><strong>Religion</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -147,7 +160,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start gap-5 bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Gender</strong></p>
+                                    <p className="pl-1"><strong>Gender</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -158,7 +171,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start gap-5 bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Nationality</strong></p>
+                                    <p className="pl-1"><strong>Nationality</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -169,7 +182,7 @@ const PreviewPage = () => {
                             </div>
                             <div className="flex justify-start gap-5 bg-slate-200 p-1 rounded-md mb-1">
                                 <div className="w-1/2">
-                                    <p><strong>Blood Group</strong></p>
+                                    <p className="pl-1"><strong>Blood Group</strong></p>
                                 </div>
                                 <div className="w-1/2">
                                     <p>
@@ -178,9 +191,6 @@ const PreviewPage = () => {
                                     </p>
                                 </div>
                             </div>
-
-
-
 
                         </div>
 
@@ -415,7 +425,7 @@ const PreviewPage = () => {
                         <div className="mb-6 ">
                             <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Reason for Leaving Last School</h3>
 
-                            <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1 min-h-28 break-words">
+                            <div className="flex justify-start bg-slate-200 p-1 rounded-md mb-1 min-h-48 break-words">
                                 <p className="break-all">{FormData?.reasonLeaving}</p>
                             </div>
 
@@ -426,24 +436,92 @@ const PreviewPage = () => {
 
 
                     <div className="w-1/2">
-                        <div className="mb-6 ">
-                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">Your certificates </h3>
+                        <div className="mb-6">
+                            <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1">
+                                Your certificates
+                            </h3>
+                            <div className="flex justify-between">
+                                <div>
+                                    <img
+                                        className="w-[120px] p-1 h-[100px] cursor-pointer"
+                                        src={FormData.medical_certificatePreview}
+                                        alt="Medical Certificate"
+                                        onClick={() =>
+                                            handleImageClick(FormData.medical_certificatePreview, "Medical Certificate")
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <img
+                                        className="w-[120px] p-1 h-[100px] cursor-pointer"
+                                        src={FormData.leaving_certificatePreview}
+                                        alt="Leaving Certificate"
+                                        onClick={() =>
+                                            handleImageClick(FormData.leaving_certificatePreview, "Leaving Certificate")
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <img
+                                        className="w-[120px] p-1 h-[100px] cursor-pointer"
+                                        src={FormData.mark_listPreview}
+                                        alt="Mark List"
+                                        onClick={() =>
+                                            handleImageClick(FormData.mark_listPreview, "Mark List")
+                                        }
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <img
+                                    className="w-[120px] p-1 h-[100px] cursor-pointer"
+                                    src={FormData.signaturePreview}
+                                    alt="Mark List"
+                                    onClick={() =>
+                                        handleImageClick(FormData.signaturePreview, "Mark List")
+                                    }
+                                />
 
+                            </div>
 
-
-
+                            {/* Modal for zoomed-in image */}
+                            {selectedImage && (
+                                <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+                                    <div className="bg-white p-4 rounded-md relative animate-fadeInScale" 
+                                    style={{
+                                        width: '90vw', // 90% of the viewport width
+                                        maxWidth: '793.7px', // Max width to maintain A4 size
+                                        height: 'auto', // Let height adjust automatically
+                                        aspectRatio: '210 / 297', // A4 aspect ratio (width/height)
+                                        maxHeight: '90vh', // Limit height to 90% of the viewport height
+                                      }}
+                                      >
+                                        <button
+                                            className="absolute top-2 right-2 text-white bg-red-600 rounded-full px-2 py-1"
+                                            onClick={handleCloseModal}
+                                        >
+                                            X
+                                        </button>
+                                        <h2 className="text-center text-xl md:text-5xl font-bold my-5 mb-10">{selectedName}</h2>
+                                        <img className="w-auto h-[400px] mx-auto" src={selectedImage} alt={selectedName} />
+                                    </div>
+                                </div>
+                            )}
                         </div>
+
                     </div>
                 </div>
-                {/* Todo show Certificate */}
+
             </div>
 
             {/* Download PDF Button */}
-            <div className="mt-6 flex justify-end gap-4 max-w-[1000px] min-w-[600px] mx-auto">
-                <Link to="" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={HandleConfirm}>
-                    Confirm Submit
-                </Link>
+            <div className="bg-white">
+                <div className="mt-6 flex justify-end gap-4 max-w-[1000px] min-w-[600px] mx-auto">
+                    <Link to="" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={HandleConfirm}>
+                        Confirm Submit
+                    </Link>
 
+                </div>
             </div>
 
         </div>
