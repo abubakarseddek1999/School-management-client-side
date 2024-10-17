@@ -38,6 +38,7 @@ const Admission = () => {
     const [markList, setMarkList] = useState(null);
     const [medicalCertificate, setMedicalCertificate] = useState(null);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    console.log(medicalCertificate);
 
     const [pageColor, setPageColor] = useState("#367c96");
     const [formColor, setFormColor] = useState("#ffffff");
@@ -52,6 +53,8 @@ const Admission = () => {
         const file = e.target.files[0];
         if (file) {
             setFile(file);
+            setError(prev => ({ ...prev, [e.target.name]: false }));
+
         }
     };
 
@@ -82,37 +85,29 @@ const Admission = () => {
             reader.readAsDataURL(file);
         }
     };
-
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
-        // const form = e.target;
-        // console.log(formData);
+        console.log(formData);
         setFormData(formData);
-        console.log(form.reportValidity());
-
         if (form.checkValidity()) {
-            // You can process form data here if needed
-            console.log(formData); // Example: Log form data
-            // Navigate to the Preview Page
+           
+            // Process form data and navigate
+            console.log("Form data submitted.");
             navigate('/PreviewPage');
         } else {
-            form.reportValidity(); // Show validation errors
+            form.reportValidity(); // Show validation errors in the form
         }
-
     };
 
     return (
-
 
         <div className="min-h-screen flex items-center justify-center py-28 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: inputBackground }}>
 
             <div className="max-w-6xl w-full space-y-8 p-10 mt-5 border rounded-xl shadow-lg" style={{ backgroundColor: formColor }}>
                 {/* Form title */}
                 <h2 className="text-center text-3xl font-extrabold text-gray-900">School Admission Form</h2>
-
                 <form className="mt-10 space-y-6" onSubmit={handleSubmit}>
-
                     <div className="rounded-md shadow-sm ">
                         {/* first name and last name */}
                         <div className="grid md:grid-cols-2 gap-4 mb-10">
@@ -133,7 +128,7 @@ const Admission = () => {
                                     id="lastName"
                                     name="lastName"
                                     type="text"
-
+                                    required
                                     // value={formData.lastName}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="last name" style={{ backgroundColor: inputBackground }} />
@@ -148,7 +143,7 @@ const Admission = () => {
                                     id="dob"
                                     name="dob"
                                     type="date"
-
+                                    required
                                     // value={formData.dob}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" />
@@ -159,6 +154,7 @@ const Admission = () => {
                                     id="placeOfBirth"
                                     name="placeOfBirth"
                                     type="text"
+                                    required
                                     // value={formData.placeOfBirth}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Place of Birth" />
@@ -169,12 +165,10 @@ const Admission = () => {
                         <div className="grid md:grid-cols-2 gap-4 mt-4">
                             <div>
                                 <label htmlFor="religion" className="">Religion<span className="text-red-500 text-xl">*</span></label>
-                                {/* todo set dropdown icon in input*/}
                                 <select
                                     id="religion"
                                     name="religion"
-
-                                    // value={formData.religion}
+                                    required
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md">
                                     <option value="">Please Select</option>
@@ -191,7 +185,7 @@ const Admission = () => {
                                 <select
                                     id="gender"
                                     name="gender"
-
+                                    required
                                     // value={formData.gender}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md">
@@ -209,7 +203,7 @@ const Admission = () => {
                                 <input
                                     name="nationality"
                                     type="text"
-
+                                    required
                                     // value={formData.nationality}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="" />
@@ -219,7 +213,7 @@ const Admission = () => {
                                 <input
                                     name="blood"
                                     type="text"
-
+                                    required
                                     // value={formData.blood}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="" />
@@ -236,8 +230,7 @@ const Admission = () => {
                                         id="District"
                                         name="District"
                                         type="text"
-
-                                        // value={formData.PresentAddress}
+                                        required
                                         onChange={handleChange}
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="District" />
                                 </div>
@@ -247,8 +240,7 @@ const Admission = () => {
                                         id="Sub-District"
                                         name="Sub_District"
                                         type="text"
-
-                                        // value={formData.PresentAddress}
+                                        required
                                         onChange={handleChange}
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Sub-District" />
                                 </div>
@@ -258,8 +250,8 @@ const Admission = () => {
                                         id="Village"
                                         name="Village"
                                         type="text"
-
-                                        // value={formData.PresentAddress}
+                                        required
+                                  
                                         onChange={handleChange}
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="village-name" />
                                 </div>
@@ -269,8 +261,7 @@ const Admission = () => {
                                         id="Present-address"
                                         name="Post_code"
                                         type="number"
-
-                                        // value={formData.PresentAddress}
+                                        required
                                         onChange={handleChange}
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="post-code " />
                                 </div>
@@ -284,8 +275,7 @@ const Admission = () => {
                                         id="District"
                                         name="par_District"
                                         type="text"
-
-                                        // value={formData.PresentAddress}
+                                        required
                                         onChange={handleChange}
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="District" />
                                 </div>
@@ -295,8 +285,7 @@ const Admission = () => {
                                         id="Sub_District"
                                         name="par_Sub_District"
                                         type="text"
-
-                                        // value={formData.PresentAddress}
+                                        required
                                         onChange={handleChange}
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Sub-District" />
                                 </div>
@@ -306,7 +295,7 @@ const Admission = () => {
                                         id="Village"
                                         name="par_Village"
                                         type="text"
-
+                                        required
                                         // value={formData.PresentAddress}
                                         onChange={handleChange}
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="village-name" />
@@ -317,14 +306,13 @@ const Admission = () => {
                                         id="Present-address"
                                         name="par_Post_code"
                                         type="number"
-
+                                        required
                                         // value={formData.PresentAddress}
                                         onChange={handleChange}
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="post-code " />
                                 </div>
                             </div>
                         </div>
-
 
                         {/* last-school */}
                         <div className="mt-4">
@@ -333,12 +321,11 @@ const Admission = () => {
                                 id="last-school"
                                 name="lastSchool"
                                 type="text"
-
+                                required
                                 // value={formData.lastSchool}
                                 onChange={handleChange}
                                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Name of Last School" />
                         </div>
-
                         {/* Medium of Instruction */}
                         <div className="grid md:grid-cols-2 gap-4 mt-4">
                             <div>
@@ -346,7 +333,7 @@ const Admission = () => {
                                 <select
                                     id="medium-of-instruction"
                                     name="medium"
-
+                                    required
                                     // value={formData.mediumOfInstruction}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md">
@@ -361,7 +348,7 @@ const Admission = () => {
                                 <select
                                     id="standard"
                                     name="standard"
-
+                                    required
                                     // value={formData.standard}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md">
@@ -390,6 +377,7 @@ const Admission = () => {
                                     id="reason-for-leaving"
                                     name="reasonLeaving"
                                     type="text"
+                                    required
                                     // value={formData.reasonForLeaving}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Reason for Leaving Last School" />
@@ -406,7 +394,7 @@ const Admission = () => {
                                         id="promoted"
                                         name="lastSchoolResult"
                                         type="radio"
-
+                                        required
                                         // value={formData.lastSchoolResult}
                                         onChange={handleChange}
 
@@ -418,7 +406,7 @@ const Admission = () => {
                                         id="failed"
                                         name="lastSchoolResult"
                                         type="radio"
-
+                                        required
                                         // value={formData.lastSchoolResult}
                                         onChange={handleChange}
                                         className="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
@@ -437,7 +425,7 @@ const Admission = () => {
                                         id="day-scholar"
                                         name="admissionSoughtAs"
                                         type="radio"
-
+                                        required
                                         // value={formData.admissionSoughtAs}
                                         onChange={handleChange}
                                         className="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
@@ -448,7 +436,7 @@ const Admission = () => {
                                         id="boarder"
                                         name="admissionSoughtAs"
                                         type="radio"
-
+                                        required
                                         value={formData.admissionSoughtAs}
                                         className="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
                                     <label htmlFor="boarder" className="ml-3 block text-sm leading-5 font-medium text-gray-700">Boarder</label>
@@ -464,7 +452,7 @@ const Admission = () => {
                                     id="guardian-name"
                                     name="guardianName"
                                     type="text"
-
+                                    required
                                     // value={formData.guardianName}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Local Guardian Name" />
@@ -475,7 +463,7 @@ const Admission = () => {
                                     id="guardian-occupation"
                                     name="guardianOccupation"
                                     type="text"
-
+                                    required
                                     // value={formData.guardianOccupation}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Local Guardian Occupation" />
@@ -490,7 +478,7 @@ const Admission = () => {
                                     id="guardian-email"
                                     name="guardianEmail"
                                     type="email"
-
+                                    required
                                     // value={formData.guardianEmail}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Local Guardian Email" />
@@ -501,7 +489,7 @@ const Admission = () => {
                                     id="guardian-phone"
                                     name="guardianPhone"
                                     type="tel"
-
+                                    required
                                     // value={formData.guardianPhone}
                                     onChange={handleChange}
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10sm:text-sm shadow-md" placeholder="Local Guardian Phone Number" />
@@ -515,7 +503,14 @@ const Admission = () => {
                                 <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
                                     <span className="mt-2 text-base leading-normal">{leavingCertificate ? leavingCertificate.name : "Upload a File"}</span>
-                                    <input id="leaving_certificate" name="leaving_certificate" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setLeavingCertificate)} />
+                                    <input
+                                        id="leaving_certificate"
+                                        name="leaving_certificate"
+                                        required
+                                        type="file"
+                                        className="sr-only"
+                                        onChange={(e) => handleFileUpload(e, setLeavingCertificate)}
+                                    />
                                 </label>
                             </div>
                         </div>
@@ -526,19 +521,38 @@ const Admission = () => {
                                 <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
                                     <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
                                     <span className="mt-2 text-base leading-normal">{markList ? markList.name : "Upload a File"}</span>
-                                    <input id="mark-list" name="mark_list" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setMarkList)} />
+                                    <input
+                                        id="mark-list"
+                                        required
+                                        name="mark_list"
+                                        type="file"
+                                        className="sr-only"
+                                        onChange={(e) => handleFileUpload(e, setMarkList)}
+                                    />
                                 </label>
                             </div>
                         </div>
 
                         {/* Attach Scan copy of Medical Certificate */}
                         <div className="mt-4">
-                            <label htmlFor="medical_certificate" className="">Attach Scan copy of Medical Certificate<span className="text-red-500 text-xl">*</span></label>
+                            <label htmlFor="medical_certificate" className="">
+                                Attach Scan copy of Medical Certificate
+                                <span className="text-red-500 text-xl">*</span>
+                            </label>
                             <div name="medicalCertificate" onChange={handleFileChange} className="flex items-center justify-center w-full">
                                 <label className="flex flex-col items-center w-full px-4 py-6 text-blue-500 border border-blue-500 rounded-lg shadow-lg cursor-pointer">
-                                    <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" /></svg>
+                                    <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M16.5 13.5h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3zm-4.5-11.5l6 6h-4v6h-4v-6h-4l6-6zm7.5 13.5v5h-12v-5h-5v7h22v-7h-5z" />
+                                    </svg>
                                     <span className="mt-2 text-base leading-normal">{medicalCertificate ? medicalCertificate.name : "Upload a File"}</span>
-                                    <input id="medical_certificate" name="medical_certificate" type="file" className="hidden" onChange={(e) => handleFileUpload(e, setMedicalCertificate)} />
+                                    <input
+                                        id="medical-certificate"
+                                        name="medical_certificate"
+                                        required
+                                        type="file"
+                                        className="sr-only" 
+                                        onChange={(e) => handleFileUpload(e, setMedicalCertificate)}
+                                    />
                                 </label>
                             </div>
                         </div>
@@ -597,7 +611,7 @@ const Admission = () => {
 
                         {/* terms & conditions */}
                         <div className="mt-6 flex items-center">
-                            <input id="agree" name="agree" type="checkbox" className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                            <input id="agree" required name="agree" type="checkbox" className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
                             <label htmlFor="agree" className="ml-2 block text-sm leading-5 text-gray-900">I agree to the <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">terms & conditions</a></label>
                         </div>
                         {/* Submit button */}
@@ -606,14 +620,6 @@ const Admission = () => {
                                 Submit Application
                             </button>
                         </div>
-
-                        {/* submit button */}
-                        {/* <div onClick={handleSubmit} className="mt-6 flex justify-end ">
-                            <Link to="/PreviewPage" type="submit" className="group uppercase relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Submit Application
-                            </Link>
-
-                        </div> */}
 
                     </div>
                 </form>

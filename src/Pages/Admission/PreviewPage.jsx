@@ -83,7 +83,7 @@ const PreviewPage = () => {
             <div className="max-w-[1000px] min-w-[600px] mx-auto space-y-8 bg-white  p-6 sm:p-10 lg:px-16 mt-5 px-16 border rounded-xl shadow-lg actual-receipt">
 
                 <div className="flex justify-between bg-slate-200 p- rounded-md mb-1">
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-between items-center">
                         <div>
                             <img className="w-24 h-24" src={logo} alt="" />
 
@@ -97,7 +97,7 @@ const PreviewPage = () => {
                     </div>
                     <div>
                         {/* student image */}
-                        <img className="w-[120px] p-1 h-[100px]" src={FormData.studentPhotoPreview} alt="" />
+                        <img className="w-[110px] p-1 h-[120px]" src={FormData.studentPhotoPreview} alt="" />
                     </div>
                 </div>
 
@@ -440,10 +440,10 @@ const PreviewPage = () => {
                             <h3 className="text-lg font-semibold bg-slate-200 p-1 rounded-md mb-1 pl-2">
                                 Your certificates
                             </h3>
-                            <div className="flex justify-between">
+                            <div className="flex justify-between pt-5">
                                 <div>
                                     <img
-                                        className="w-[120px] p-1 h-[100px] cursor-pointer"
+                                        className="w-[120px] p-1 object-contain h-[100px] cursor-pointer"
                                         src={FormData.medical_certificatePreview}
                                         alt="Medical Certificate"
                                         onClick={() =>
@@ -453,7 +453,7 @@ const PreviewPage = () => {
                                 </div>
                                 <div>
                                     <img
-                                        className="w-[120px] p-1 h-[100px] cursor-pointer"
+                                        className="w-[120px] p-1 h-[100px] object-contain cursor-pointer"
                                         src={FormData.leaving_certificatePreview}
                                         alt="Leaving Certificate"
                                         onClick={() =>
@@ -463,7 +463,7 @@ const PreviewPage = () => {
                                 </div>
                                 <div>
                                     <img
-                                        className="w-[120px] p-1 h-[100px] cursor-pointer"
+                                        className="w-[120px] p-1 h-[100px] object-contain cursor-pointer"
                                         src={FormData.mark_listPreview}
                                         alt="Mark List"
                                         onClick={() =>
@@ -476,9 +476,9 @@ const PreviewPage = () => {
                                 <img
                                     className="w-[120px] p-1 h-[100px] cursor-pointer"
                                     src={FormData.signaturePreview}
-                                    alt="Mark List"
+                                    alt="signature List"
                                     onClick={() =>
-                                        handleImageClick(FormData.signaturePreview, "Mark List")
+                                        handleImageClick(FormData.signaturePreview, "signature List")
                                     }
                                 />
 
