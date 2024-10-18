@@ -1,21 +1,21 @@
+/* eslint-disable react/no-unknown-property */
 import { useState } from "react";
-import { FaPlayCircle } from "react-icons/fa";
-
+// import { FaPlayCircle } from "react-icons/fa";
 
 const Classes = () => {
     // Sample data for classes
     const classData = [
-        { id: 1, class: "6", subject: "Mathematics", section: "A", version: "English Medium", video: { title: "Introduction to Algebra", link: "#", length: "15:30" } },
-        { id: 2, class: "6", subject: "Science", section: "B", version: "Bangla Medium", video: { title: "Water Cycle", link: "#", length: "12:45" } },
-        { id: 3, class: "7", subject: "English", section: "A", version: "English Medium", video: { title: "Grammar Basics", link: "#", length: "10:20" } },
-        { id: 4, class: "7", subject: "Geography", section: "B", version: "Bangla Medium", video: { title: "Mountains and Valleys", link: "#", length: "14:50" } },
-        { id: 5, class: "8", subject: "History", section: "A", version: "English Medium", video: { title: "Ancient Civilizations", link: "#", length: "18:30" } },
-        { id: 6, class: "8", subject: "Mathematics", section: "B", version: "Bangla Medium", video: { title: "Linear Equations", link: "#", length: "16:10" } },
-        { id: 7, class: "9", subject: "Physics", section: "A", version: "English Medium", video: { title: "Newton's Laws", link: "#", length: "20:45" } },
-        { id: 8, class: "9", subject: "Chemistry", section: "B", version: "Bangla Medium", video: { title: "Chemical Reactions", link: "#", length: "22:00" } },
-        { id: 9, class: "10", subject: "Biology", section: "A", version: "English Medium", video: { title: "Cell Structure", link: "#", length: "19:30" } },
-        { id: 10, class: "10", subject: "History", section: "B", version: "Bangla Medium", video: { title: "World War II", link: "#", length: "25:15" } },
-        { id: 11, class: "10", subject: "History", section: "A", version: "Bangla Medium", video: { title: "news War II", link: "#", length: "23:15" } },
+        { id: 1, class: "6", subject: "Mathematics", section: "A", version: "English Medium", video: { title: "Introduction to Algebra", link: "https://www.youtube.com/embed/QSBpLspypGY?si=_J7CHefSKFMHoypq", length: "15:30" } },
+        { id: 2, class: "6", subject: "Science", section: "B", version: "Bangla Medium", video: { title: "Water Cycle", link: "https://www.youtube.com/embed/WetARSR2uF4?si=q1P2DFSbEmCJ4mdl", length: "12:45" } },
+        { id: 3, class: "7", subject: "English", section: "A", version: "English Medium", video: { title: "Grammar Basics", link: "https://www.youtube.com/embed/ocOQm6yf-3Y?si=GUjQClXKMg7nFL5j", length: "10:20" } },
+        { id: 4, class: "7", subject: "Geography", section: "B", version: "Bangla Medium", video: { title: "Mountains and Valleys", link: "https://www.youtube.com/embed/WO7EZsYbnzM?si=O0sULJPvkezhuCYx", length: "14:50" } },
+        { id: 5, class: "8", subject: "History", section: "A", version: "English Medium", video: { title: "Ancient Civilizations", link: "https://www.youtube.com/embed/V0CcWG2LpDQ?si=JkQLIyXK4h4A5J7Z", length: "18:30" } },
+        { id: 6, class: "8", subject: "Mathematics", section: "B", version: "Bangla Medium", video: { title: "Linear Equations", link: "https://www.youtube.com/embed/m3xYJWLW2ts?si=jzouDul4h6Ed4Ndb", length: "16:10" } },
+        { id: 7, class: "9", subject: "Physics", section: "A", version: "English Medium", video: { title: "Newton's Laws", link: "https://www.youtube.com/embed/A14594ZLK04?si=1S1H__TOmGHJdoa_", length: "20:45" } },
+        { id: 8, class: "9", subject: "Chemistry", section: "B", version: "Bangla Medium", video: { title: "Chemical Reactions", link: "https://www.youtube.com/embed/Ax3bsO5nfUc?si=VfThM9v1gFmXNMbU", length: "22:00" } },
+        { id: 9, class: "10", subject: "Biology", section: "A", version: "English Medium", video: { title: "Cell Structure", link: "https://www.youtube.com/embed/s0V5aqzlfsk?si=onLV6RD9ADKowYpC", length: "19:30" } },
+        { id: 10, class: "10", subject: "History", section: "B", version: "Bangla Medium", video: { title: "World War II", link: "https://www.youtube.com/embed/8VQ-RHM8SrY?si=adoArQB484jd8QwH", length: "25:15" } },
+        { id: 11, class: "10", subject: "History", section: "A", version: "Bangla Medium", video: { title: "news War II", link: "https://www.youtube.com/embed/_WhDr_NctFA?si=D4q-zYVG6L0NaJyz", length: "23:15" } },
     ];
 
     // States for filtering
@@ -130,9 +130,9 @@ const Classes = () => {
                             className="bg-white  rounded-2xl shadow-md hover:shadow-lg transition-shadow"
                         >
                             <div className="relative">
-                                <img className="w-full rounded-t-lg" src="https://i.postimg.cc/V6s0r0d6/ezgif-1-073d75dcde.jpg" alt="" />
+                                <iframe width="100%" height="300" src={cls?.video?.link} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                    <FaPlayCircle className="text-5xl font-bold cursor-pointer" />
+                                    {/* <FaPlayCircle className="text-5xl font-bold cursor-pointer" /> */}
                                 </div>
                             </div>
 
