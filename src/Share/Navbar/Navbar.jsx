@@ -38,6 +38,7 @@ const Navbar = () => {
               </button>
             </div>
 
+
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4 text-white">
                 <a href="/" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Home</a>
