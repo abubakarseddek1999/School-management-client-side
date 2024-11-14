@@ -12,6 +12,9 @@ import NotFound from "../Pages/ErrorPage/NotFound";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Signup/SignUp";
 import PrivetRoute from "./PrivetRoute";
+import Dashboard from "../Layout/Dashboard";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import StudentManagement from "../Pages/Dashboard/MangeStudents/StudentManagement";
 
   export const router = createBrowserRouter([
     {
@@ -51,6 +54,22 @@ import PrivetRoute from "./PrivetRoute";
             path: '/SignUP',
             element: <SignUp></SignUp>
         }
+      ]
+    },
+    {
+      path: "/dashboard",
+      element:  <Dashboard></Dashboard>,
+      errorElement: <NotFound></NotFound>,
+      children:[
+        {
+            path: 'adminHome',
+            element:<AdminHome></AdminHome>
+        },
+        {
+            path: 'studentManage',
+            element:<StudentManagement></StudentManagement>
+        },
+        
       ]
     },
   ]);

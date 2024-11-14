@@ -38,13 +38,13 @@ const Navbar = () => {
               </button>
             </div>
 
-
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4 text-white">
                 <a href="/" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Home</a>
                 <a href="/about" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">About</a>
                 <a href="/classes" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Classes</a>
                 <a href="/admission" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Admission</a>
+                <a href="/dashboard/adminHome" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                 <a href="/contact" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                 {/* <a href="/dashboard" className="text-black md:text-base lg:text-xl hover:text-white hover:bg-orange-300 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a> */}
                 <a href="/login" className="text-white bg-yellow-600 hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Login </a>
