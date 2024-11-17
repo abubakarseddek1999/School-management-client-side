@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 import { Link } from 'react-router-dom';
+import './FullCalendarCustom.css'; // Import the custom styles
 
 const AdminHome = () => {
   const [stats, setStats] = useState({ students: 0, teachers: 0, classes: 0 });
   const [activities, setActivities] = useState([]);
+
+  // Sample events - replace with your API data
+  const events = [
+    { title: 'Math Exam', date: '2024-11-25' },
+    { title: 'English Exam', date: '2024-11-26' },
+    { title: 'Science Fair', date: '2024-12-05' },
+    { title: 'Parent-Teacher Meeting', date: '2024-12-10' },
+  ];
 
   // Fetching data
   useEffect(() => {
@@ -56,17 +69,17 @@ const AdminHome = () => {
         <div className="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4">
           
            <Link to={"/dashboard/studentManage"}> <button
-              className="bg-blue-500 text-white p-4 rounded-lg shadow-md hover:bg-blue-600"
+              className="bg-blue-500 w-full text-white p-4 rounded-lg shadow-md hover:bg-blue-600"
             >
               Manage student
             </button></Link>
             <button
-              className="bg-blue-500 text-white p-4 rounded-lg shadow-md hover:bg-blue-600"
+              className="bg-blue-500 w-full text-white p-4 rounded-lg shadow-md hover:bg-blue-600"
             >
               Manage Teacher
             </button>
             <button
-              className="bg-blue-500 text-white p-4 rounded-lg shadow-md hover:bg-blue-600"
+              className="bg-blue-500 w-full text-white p-4 rounded-lg shadow-md hover:bg-blue-600"
             >
               View Reports
             </button>
@@ -76,10 +89,19 @@ const AdminHome = () => {
 
       {/* Calendar Integration */}
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-        <h2 className="text-xl font-semibold mb-4">Upcoming Events</h2>
-        {/* Calendar placeholder - could integrate a calendar library like FullCalendar */}
-        <p className="text-gray-600">Upcoming exams and events will be displayed here.</p>
-      </div>
+      <h2 className="text-xl font-semibold mb-4">Upcoming Events</h2>
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
+        initialView="dayGridMonth"
+        events={events} // Pass the events array here
+        headerToolbar={{
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,listWeek',
+        }}
+        height="auto"
+      />
+    </div>
 
      
     </div>

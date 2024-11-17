@@ -120,7 +120,7 @@ const students =[
                   <td className="py-2 px-4">{student.class}</td>
                   <td className="py-2 px-4">{student.religion}</td>
                   <td className="py-2 px-4">{student.section}</td>
-                  <td className="py-2 px-4">
+                  <td className="py-2 px-4 flex justify-center items-center">
                     <button className="bg-green-500 text-white px-2 py-1 rounded mr-2">Edit</button>
                     <button className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                   </td>

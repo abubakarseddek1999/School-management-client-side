@@ -1,0 +1,50 @@
+/* FullCalendarCustom.css */
+
+/* Style all calendar toolbar buttons */
+.fc .fc-toolbar button {
+  background-color: #3490dc; /* Main button color */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Change button colors on hover */
+.fc .fc-toolbar button:hover {
+  background-color: #1e6deb; /* Darker shade on hover */
+}
+/* Specific style for the Today button */
+/* Specific style for the Today button */
+.fc .fc-today-button {
+    background-color: #e53e3e; /* Custom color for Today button */
+    color: white;
+  }
+  
+  /* Hover effect for the Today button */
+  .fc .fc-today-button:hover {
+    background-color: #c53030; /* Darker shade for hover effect */
+  }
+
+/* Individual button customizations */
+
+/* Month view button */
+.fc-dayGridMonth-button {
+  background-color: #38a169; /* Custom color for Month button */
+}
+
+/* Week view button */
+.fc-timeGridWeek-button {
+  background-color: #f6ad55; /* Custom color for Week button */
+}
+
+/* List view button */
+.fc-listWeek-button {
+  background-color: #ed8936; /* Custom color for List button */
+}
+
+/* Active button styles */
+.fc .fc-toolbar button.fc-button-active {
+  background-color: #2b63c4; /* Active state color */
+  color: white;
+}
