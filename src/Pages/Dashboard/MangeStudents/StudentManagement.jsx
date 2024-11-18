@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 
 const StudentManagement = () => {
   const [filters, setFilters] = useState({ class: "", religion: "", section: "" });
-//   const [students, setStudents] = useState([
-    
-//     { id: 1, name: "John Doe", class: "7", religion: "Christianity", section: "A" },
-//     { id: 2, name: "Anjali Sharma", class: "7", religion: "Hinduism", section: "B" },
-//     { id: 3, name: "Fatima Begum", class: "7", religion: "Islam", section: "A" },
-//     { id: 4, name: "David Kim", class: "6", religion: "Christianity", section: "B" },
-//   ]);
-const students =[
+  const [searchQuery, setSearchQuery] = useState("");
+  //   const [students, setStudents] = useState([
+
+  //     { id: 1, name: "John Doe", class: "7", religion: "Christianity", section: "A" },
+  //     { id: 2, name: "Anjali Sharma", class: "7", religion: "Hinduism", section: "B" },
+  //     { id: 3, name: "Fatima Begum", class: "7", religion: "Islam", section: "A" },
+  //     { id: 4, name: "David Kim", class: "6", religion: "Christianity", section: "B" },
+  //   ]);
+  const students = [
     { "id": 1, "name": "John Doe", "class": "7", "religion": "Christianity", "section": "A" },
     { "id": 2, "name": "Anjali Sharma", "class": "7", "religion": "Hinduism", "section": "B" },
     { "id": 3, "name": "Fatima Begum", "class": "7", "religion": "Islam", "section": "A" },
@@ -30,24 +31,28 @@ const students =[
     { "id": 18, "name": "Mohammed Rahim", "class": "6", "religion": "Islam", "section": "C" },
     { "id": 19, "name": "Isabella Russo", "class": "7", "religion": "Christianity", "section": "C" },
     { "id": 20, "name": "Hassan Ali", "class": "6", "religion": "Islam", "section": "B" }
-]
+  ]
 
   const handleFilterChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
+  };
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value.toLowerCase());
   };
 
   const filteredStudents = students.filter((student) => {
     return (
       (!filters.class || student.class === filters.class) &&
       (!filters.religion || student.religion === filters.religion) &&
-      (!filters.section || student.section === filters.section)
+      (!filters.section || student.section === filters.section) &&
+      (!searchQuery || student.name.toLowerCase().includes(searchQuery))
     );
   });
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h2 className="text-2xl font-bold text-gray-700 mb-6">Manage Students</h2>
-      
+
       {/* Filter Section */}
       <div className="bg-white p-4 rounded-lg shadow-md flex gap-4 mb-6">
         <div>
@@ -65,7 +70,7 @@ const students =[
             {/* Add other classes as needed */}
           </select>
         </div>
-        
+
         <div>
           <label className="text-gray-600 font-semibold">Religion</label>
           <select
@@ -81,7 +86,7 @@ const students =[
             {/* Add other religions as needed */}
           </select>
         </div>
-        
+
         <div>
           <label className="text-gray-600 font-semibold">Section</label>
           <select
@@ -96,8 +101,18 @@ const students =[
             {/* Add other sections as needed */}
           </select>
         </div>
+        <div className="flex-grow">
+          <label className="text-gray-600 font-semibold">Search</label>
+          <input
+            type="text"
+            placeholder="Search by name"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="block w-full mt-1 p-2 border rounded-lg"
+          />
+        </div>
       </div>
-      
+
       {/* Student List Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white rounded-lg shadow-md">
