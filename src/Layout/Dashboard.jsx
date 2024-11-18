@@ -14,60 +14,61 @@ const Dashboard = () => {
             {/* dashboard side bar */}
             <div className={`w-${isExpanded ? '64' : '16'} min-h-screen bg-blue-400 `}>
                 <div className="flex justify-between items-center">
-                    <img className="w-[30px] h-[30px] p-x-2 mt-1" src={logo} alt="" />
+                    
+                    <img className="w-[30px] h-[30px]  mt-1" src={logo} alt="" />
                     <button onClick={toggleSidebar} className="text-white">
                     {isExpanded ?<IoIosArrowDropleftCircle  className="text-2xl" />   : <IoIosArrowDroprightCircle className="text-2xl" /> }
                     </button>
                 </div>
-                <ul className="menu p-3 text-white font-bold text-sm">
+                <ul className="menu p-2 text-white font-bold text-sm">
                     <li>
                         <NavLink to="/dashboard/adminHome">
-                            <FaHome /> {isExpanded && <span>Admin Home</span>}
+                            <FaHome className="text-2xl" /> {isExpanded && <span>Admin Home</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/addItems">
-                            <FaUtensils /> {isExpanded && <span>Add Student</span>}
+                            <FaUtensils className="text-2xl"/> {isExpanded && <span>Add Student</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/manageItems">
-                            <FaList /> {isExpanded && <span>Manage Student</span>}
+                            <FaList className="text-2xl" /> {isExpanded && <span>Manage Student</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/review">
-                            <FaAd /> {isExpanded && <span>Review</span>}
+                            <FaAd className="text-2xl"/> {isExpanded && <span>Review</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/users">
-                            <FaUsers /> {isExpanded && <span>All Users</span>}
+                            <FaUsers className="text-2xl"/> {isExpanded && <span>All Users</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/manageTeacher">
-                            <FaUsers /> {isExpanded && <span>Manage Teacher</span>}
+                            <FaUsers className="text-2xl"/> {isExpanded && <span>Manage Teacher</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/viewReports">
-                            <FaHome /> {isExpanded && <span>View Reports</span>}
+                            <FaHome className="text-2xl"/> {isExpanded && <span>View Reports</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/history">
-                            <FaCalendar /> {isExpanded && <span>Payment History</span>}
+                            <FaCalendar className="text-2xl"/> {isExpanded && <span>Payment History</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/paymentHistory">
-                            <FaList /> {isExpanded && <span>Payment Real History</span>}
+                            <FaList className="text-2xl"/> {isExpanded && <span>Payment Real History</span>}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/order/contact">
-                            <FaEnvelope /> {isExpanded && <span>Contact</span>}
+                            <FaEnvelope className="text-2xl"/> {isExpanded && <span>Contact</span>}
                         </NavLink>
                     </li>
                 </ul>
