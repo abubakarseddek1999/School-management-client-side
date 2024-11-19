@@ -15,6 +15,7 @@ import PrivetRoute from "./PrivetRoute";
 import Dashboard from "../Layout/Dashboard";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import StudentManagement from "../Pages/Dashboard/MangeStudents/StudentManagement";
+import TeacherManagement from "../Pages/Dashboard/TeacherManagement/TeacherManagement";
 
   export const router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ import StudentManagement from "../Pages/Dashboard/MangeStudents/StudentManagemen
         {
             path: 'studentManage',
             element:<StudentManagement></StudentManagement>
+        },
+        {
+            path: 'teacherMange',
+            element:<TeacherManagement></TeacherManagement>
         },
         
       ]

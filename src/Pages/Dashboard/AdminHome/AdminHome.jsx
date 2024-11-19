@@ -5,6 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { Link } from 'react-router-dom';
 import './FullCalendarCustom.css'; // Import the custom styles
+import { FaChalkboardTeacher, FaSchool, FaUserGraduate } from 'react-icons/fa';
 
 const AdminHome = () => {
   const [stats, setStats] = useState({ students: 0, teachers: 0, classes: 0 });
@@ -58,16 +59,33 @@ const AdminHome = () => {
       <main className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Stats Cards */}
         <div className="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4">
-          {Object.entries(stats).map(([key, value], index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
-              <h3 className="text-xl font-medium text-gray-600">{key.charAt(0).toUpperCase() + key.slice(1)}</h3>
-              <p className="text-4xl font-bold text-blue-600">{value}</p>
+          <div className="bg-white p-2 md:p-2 lg:p-6 rounded-lg shadow-md flex flex-col justify-center items-center">
+            <FaUserGraduate className="text-blue-500  text-4xl md:text-5xl lg:text-6xl" />
+            <div className='text-center'>
+              <h3 className="text-xl md:text-lg lg:text4-xl font-medium text-gray-600">Students</h3>
+              <p className="text-4xl font-bold text-blue-600">{stats.students}</p>
             </div>
-          ))}
+          </div>
+          <div className="bg-white p-2 md:p-2 lg:p-6 rounded-lg shadow-md flex flex-col justify-center items-center">
+            <FaChalkboardTeacher className="text-green-500 text-4xl md:text-5xl lg:text-6xl" />
+            <div className='text-center'>
+              <h3 className="text-xl md:text-lg lg:text4-xl font-medium text-gray-600">Teachers</h3>
+              <p className="text-4xl font-bold text-green-600">{stats.teachers}</p>
+            </div>
+          </div>
+          <div className="bg-white p-2 md:p-2 lg:p-6 rounded-lg shadow-md flex flex-col justify-center items-center">
+            <div className='flex justify-center items-center'>
+              <FaSchool className="text-purple-500 text-4xl md:text-5xl lg:text-6xl" />
+            </div>
+            <div className='text-center'>
+              <h3 className="text-xl md:text-lg lg:text4-xl font-medium text-gray-600">Classes</h3>
+              <p className="text-4xl font-bold text-purple-600">{stats.classes}</p>
+            </div>
+          </div>
         </div>
 
         {/* Recent Activities */}
-        <div className="bg-white p-6 rounded-lg shadow-md col-span-1">
+        <div className="bg-white p-2 md:p-2 lg:p-6 rounded-lg shadow-md col-span-1">
           <h2 className="text-xl font-semibold mb-4">Recent Activities</h2>
           <ul>
             {activities.map((activity, index) => (
@@ -86,11 +104,11 @@ const AdminHome = () => {
           >
             Manage student
           </button></Link>
-          <button
+          <Link to={"/dashboard/teacherMange"}> <button
             className="bg-blue-500 w-full text-white p-4 rounded-lg shadow-md hover:bg-blue-600"
           >
             Manage Teacher
-          </button>
+          </button></Link>
           <button
             className="bg-blue-500 w-full text-white p-4 rounded-lg shadow-md hover:bg-blue-600"
           >
@@ -104,19 +122,19 @@ const AdminHome = () => {
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
         <div className='flex justify-between items-center'>
           <h2 className="text-xl font-semibold mb-4">Upcoming Events</h2>
-          
-            <button
-              onClick={handleAddEvent}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 transition"
-            >
-              Add Event
-            </button>
-          
+
+          <button
+            onClick={handleAddEvent}
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 transition"
+          >
+            Add Event
+          </button>
+
         </div>
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
           initialView="dayGridMonth"
-          initialDate={new Date()} 
+          initialDate={new Date()}
           events={events} // Pass the events array here
           headerToolbar={{
             left: 'prev,next today',
