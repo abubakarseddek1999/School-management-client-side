@@ -122,6 +122,7 @@ const AdminHome = () => {
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
         <div className='flex justify-between items-center'>
           <h2 className="text-xl font-semibold mb-4">Upcoming Events</h2>
+          
 
           <button
             onClick={handleAddEvent}
