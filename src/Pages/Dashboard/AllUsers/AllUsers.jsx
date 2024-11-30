@@ -4,8 +4,8 @@ import Swal from 'sweetalert2';
 
 const AllUsers = () => {
     const [filters, setFilters] = useState({
-        department: '',
-        subject: '',
+        role: '',
+      
     });
 
     const [users, setUsers] = useState([
@@ -17,12 +17,14 @@ const AllUsers = () => {
 
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
+        console.log(name);
         setFilters({ ...filters, [name]: value });
     };
-
+    console.log(filters.role);
     const filteredUsers = users.filter(
+      
         (user) =>
-            (!filters.department || user.department === filters.department)
+            (!filters.role || user.role === filters.role)
     );
 
 
@@ -83,19 +85,19 @@ const AllUsers = () => {
             <div className="bg-white p-4 rounded-lg shadow-md flex gap-4 mb-6">
                 <div>
                     <label htmlFor="department" className="text-gray-600 font-semibold">
-                        Department
+                        Role
                     </label>
                     <select
-                        id="department"
-                        name="department"
-                        value={filters.department}
+                        id="users"
+                        name="role"
+                        value={filters.role}
                         onChange={handleFilterChange}
                         className="block w-full mt-1 p-2 border rounded-lg"
                     >
-                        <option value="">All Departments</option>
-                        <option value="Science">Science</option>
-                        <option value="Mathematics">Mathematics</option>
-                        <option value="English">English</option>
+                        <option value="">All Users</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                       
                     </select>
                 </div>
 
