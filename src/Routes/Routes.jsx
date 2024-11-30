@@ -16,6 +16,7 @@ import Dashboard from "../Layout/Dashboard";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import StudentManagement from "../Pages/Dashboard/MangeStudents/StudentManagement";
 import TeacherManagement from "../Pages/Dashboard/TeacherManagement/TeacherManagement";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
   export const router = createBrowserRouter([
     {
@@ -73,6 +74,10 @@ import TeacherManagement from "../Pages/Dashboard/TeacherManagement/TeacherManag
         {
             path: 'teacherMange',
             element:<TeacherManagement></TeacherManagement>
+        },
+        {
+            path: 'allUsers',
+            element:<AllUsers></AllUsers>
         },
         
       ]

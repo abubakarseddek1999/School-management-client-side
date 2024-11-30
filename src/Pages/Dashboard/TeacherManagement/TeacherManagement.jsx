@@ -89,7 +89,7 @@ const TeacherManagement = () => {
                             <th scope="col" className="py-2 px-4 text-left">
                                 Subject
                             </th>
-                            <th scope="col" className="py-2 px-4 text-left">
+                            <th scope="col" className="py-2 px-4">
                                 Actions
                             </th>
                         </tr>

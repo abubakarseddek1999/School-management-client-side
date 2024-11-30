@@ -42,7 +42,7 @@ const Dashboard = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/dashboard/users">
+                        <NavLink to="/dashboard/allUsers">
                             <FaUsers className="text-2xl"/> {isExpanded && <span>All Users</span>}
                         </NavLink>
                     </li>
