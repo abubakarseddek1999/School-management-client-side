@@ -21,7 +21,7 @@ const SignUp = () => {
         const form = e.target;
         const email = form.email.value;
         const StudentName = form.name.value;
-        const photo = form.photo.value;
+        const photo = "";
         const password = form.password.value;
         const accepted = form.terms.checked;
         console.log(email, password);
