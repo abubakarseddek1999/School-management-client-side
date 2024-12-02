@@ -6,9 +6,11 @@ import { FcGoogle } from "react-icons/fc";
 import UseAuth from "../../Hooks/UseAuth";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
-    const { signInWithGoogle, createUser } = UseAuth()
+    const axiosPublic = useAxiosPublic();
+    const { signInWithGoogle, createUser,updateUserProfile} = UseAuth()
     const [registerError, setRegisterError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const location = useLocation();
@@ -18,13 +20,15 @@ const SignUp = () => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
+        const StudentName = form.name.value;
+        const photo = form.photo.value;
         const password = form.password.value;
         const accepted = form.terms.checked;
         console.log(email, password);
 
         // reset eroor 
         setRegisterError('')
-       
+
 
 
 
@@ -49,14 +53,32 @@ const SignUp = () => {
             .then(result => {
                 const createInUser = result.user;
                 console.log(createInUser);
-                navigate(location?.state ? location.state : '/');
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Create account Success",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
+                updateUserProfile(StudentName, photo)
+                    .then(() => {
+                        // console.log("user profile info update");
+                        const userInfo = {
+                            name: StudentName,
+                            email: email,
+                            photo: photo
+
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log("user added database");
+                                    // reset();
+                                    Swal.fire({
+                                        title: "user created successfully",
+                                        text: "Congratulation",
+                                        icon: "success"
+                                    });
+                                    navigate(location?.state ? location.state : '/');
+
+                                }
+                            })
+
+                    })
+                    .catch((error) => console.log(error))
 
 
             })
@@ -74,7 +96,7 @@ const SignUp = () => {
                     title: "Create account Success",
                     showConfirmButton: false,
                     timer: 1500
-                  });
+                });
 
 
             })

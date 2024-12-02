@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaTrashAlt, FaUser } from 'react-icons/fa';
+import { FaSearch, FaTrashAlt, FaUser } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const AllUsers = () => {
@@ -101,13 +101,14 @@ const AllUsers = () => {
                     </select>
                 </div>
 
-                <div className="flex-grow">
+                <div className="flex-grow relative">
                     <label className="text-gray-600 font-semibold">Search</label>
                     <input
                         type="text"
                         placeholder="Search by name"
                         className="block w-full mt-1 p-2 border rounded-lg"
                     />
+                    <FaSearch className='absolute top-10 right-2' />
                 </div>
             </div>
 
@@ -144,14 +145,14 @@ const AllUsers = () => {
                                 <td className='text-center'>
                                     {user.role === 'admin' ? 'Admin' : <button
                                         onClick={() => handleMakeAdmin(user)}
-                                        className="btn btn-lg bg-green-500"><FaUser className="text-white text-2xl"></FaUser>
+                                        className="p-2 rounded-md bg-green-500"><FaUser className="text-white text-2xl"></FaUser>
                                     </button>}
 
                                 </td>
                                 <td className='text-center'>
                                     <button
                                         onClick={() => handleDeleteUser(user)}
-                                        className="btn btn-ghost btn-lg"><FaTrashAlt className="text-red-600 text-3xl"></FaTrashAlt>
+                                        className="btn btn-ghost btn-lg"><FaTrashAlt className="text-red-600 text-2xl"></FaTrashAlt>
                                     </button>
                                 </td>
 
