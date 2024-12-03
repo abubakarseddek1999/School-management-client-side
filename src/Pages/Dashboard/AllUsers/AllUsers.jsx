@@ -31,9 +31,12 @@ const AllUsers = () => {
     const filteredUsers = users.filter(
 
         (user) =>
-            (!filters.role || user.role === filters.role)
+            (!filters.role || user.role === filters.role) &&
+        (!filters.search || user.name.toLowerCase().includes(filters.search.toLowerCase()))
     );
     // console.log(filteredUsers);
+
+    
 
 
 
@@ -153,7 +156,10 @@ const AllUsers = () => {
                     <label className="text-gray-600 font-semibold">Search</label>
                     <input
                         type="text"
+                        name='search'
                         placeholder="Search by name"
+                        value={filters.search}
+                        onChange={handleFilterChange}
                         className="block w-full mt-1 p-2 border rounded-lg"
                     />
                     <FaSearch className='absolute top-10 right-2' />
