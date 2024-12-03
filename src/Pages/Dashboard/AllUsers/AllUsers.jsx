@@ -69,34 +69,51 @@ const AllUsers = () => {
 
     }
     const handleMakeAdmin = user => {
+        const actionMessage = user.role === 'admin'
+            ? `Do you want to demote ${user.name} to a User?`
+            : `Do you want to promote ${user.name} to an Admin?`;
+
         Swal.fire({
             title: "Are you sure?",
-            text: `Do you want to promote ${user.name} to an Admin?`,
+            text: actionMessage,
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, make Admin!"
+            confirmButtonText: user.role === 'admin' ? "Yes, make User" : "Yes, make Admin"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic.patch(`/users/admin/${user._id}`)
+                const updatedRole = user.role === 'admin' ? 'user' : 'admin';
+
+                // API Call to Update Role
+                axiosPublic.patch(`/users/role/${user._id}`, { role: updatedRole })
                     .then(res => {
-                        if (res.data.modifiedCount > 0) {
-                            refetch();
+                        console.log("API Response after role update:", res);
+                        if (res.data.result.modifiedCount > 0) {
+                            // Optimistic UI Update
+                            refetch(); // Trigger React Query to reload data
+
                             Swal.fire({
                                 position: "top-end",
                                 icon: "success",
-                                title: `${user.name} is now an Admin!`,
+                                title: `${user.name} is now a ${updatedRole.charAt(0).toUpperCase() + updatedRole.slice(1)}!`,
                                 showConfirmButton: false,
                                 timer: 1500
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Role update failed. Please try again.",
+                                icon: "error",
+                                confirmButtonText: "OK"
                             });
                         }
                     })
                     .catch(error => {
-                        console.error("Error making user Admin:", error);
+                        console.error("Error updating user role:", error);
                         Swal.fire({
                             title: "Error!",
-                            text: "Could not promote the user to Admin. Please try again.",
+                            text: "Could not update the user role. Please try again.",
                             icon: "error",
                             confirmButtonText: "OK"
                         });
@@ -104,6 +121,8 @@ const AllUsers = () => {
             }
         });
     };
+
+
 
 
     return (
@@ -167,19 +186,23 @@ const AllUsers = () => {
                             filteredUsers.map((user) => (
                                 <tr key={user._id}>
                                     <td className="py-2 px-4">{user.id}</td>
-                                    <div>
+                                    <td className='pt-2'>
                                         <img className="w-16 h-16 rounded-full m-2 object-cover" src={user.photo || "https://i.postimg.cc/c18J2RvR/passport-Abubakar.jpg"} alt={user.name} />
-                                    </div>
+                                    </td>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td className="text-center">
                                         {user.role === 'admin' ? (
-                                            'Admin'
+                                            <button
+                                                onClick={() => handleMakeAdmin(user)}
+                                                className="p-2 text-white rounded-md bg-blue-500">
+                                                admin
+                                            </button>
                                         ) : (
                                             <button
                                                 onClick={() => handleMakeAdmin(user)}
                                                 className="p-2 rounded-md bg-green-500">
-                                                <FaUser className="text-white text-2xl" />
+                                                <FaUser className="text-white text-2xl mx-3" />
                                             </button>
                                         )}
                                     </td>
