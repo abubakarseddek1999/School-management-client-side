@@ -198,7 +198,7 @@ const TeacherManagement = () => {
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{teacher.subject}</td>
                                 <td className="py-2 px-4 h-full text-center">
                                     <button className="bg-green-500 text-white px-2 py-1 rounded mr-2">Edit</button>
-                                    <button  onClick={() => handleDeleteUser(teacher)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                                    <button onClick={() => handleDeleteUser(teacher)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                                 </td>
                             </tr>
                         ))}
@@ -210,8 +210,8 @@ const TeacherManagement = () => {
             {/* Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white p-6 rounded-lg w-96 m-24 h-auto shadow-lg">
-                        <h3 className="text-lg font-semibold mb-4">Add New Teacher</h3>
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] sm:w-[80%] md:w-[60%] lg:w-[40%] mx-auto">
+                        <h3 className="text-lg font-semibold mb-4 text-center">Add New Teacher</h3>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/* Teacher Name */}
                             <div className="form-control w-full my-4">
@@ -222,7 +222,7 @@ const TeacherManagement = () => {
                                     type="text"
                                     {...register("name", { required: true })}
                                     placeholder="Enter teacher's name"
-                                    className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:black focus:border-white transition duration-150 ease-in-out focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)] w-full"
+                                    className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-black w-full"
                                 />
                             </div>
 
@@ -253,7 +253,7 @@ const TeacherManagement = () => {
                                 </select>
                             </div>
 
-                            {/* Other Department Input (only visible if "Other" is selected) */}
+                            {/* Other Department Input */}
                             {isOtherDepartment && (
                                 <div className="form-control w-full my-4">
                                     <label className="label">
@@ -263,11 +263,10 @@ const TeacherManagement = () => {
                                         type="text"
                                         {...register("department", { required: true })}
                                         placeholder="Enter department name"
-                                        className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:black focus:border-white transition duration-150 ease-in-out focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)] w-full"
+                                        className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-black w-full"
                                     />
                                 </div>
                             )}
-
 
                             {/* Subject */}
                             <div className="form-control w-full my-4">
@@ -278,7 +277,7 @@ const TeacherManagement = () => {
                                     type="text"
                                     {...register("subject", { required: true })}
                                     placeholder="Enter subject"
-                                    className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:black focus:border-white transition duration-150 ease-in-out focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)] w-full"
+                                    className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-black w-full"
                                 />
                             </div>
 
@@ -286,12 +285,15 @@ const TeacherManagement = () => {
                             <div className="flex justify-end gap-4">
                                 <button
                                     type="button"
-                                    className="btn btn-secondary"
+                                    className="btn btn-secondary px-4 py-2 text-sm md:text-base"
                                     onClick={closeModal}
                                 >
                                     Cancel
                                 </button>
-                                <button type="submit" className="btn btn-primary">
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary px-4 py-2 text-sm md:text-base"
+                                >
                                     Add Teacher
                                 </button>
                             </div>
@@ -299,6 +301,7 @@ const TeacherManagement = () => {
                     </div>
                 </div>
             )}
+
         </div>
     );
 };
