@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
 
 const TeacherManagement = () => {
     const [filters, setFilters] = useState({
@@ -21,7 +22,8 @@ const TeacherManagement = () => {
     const filteredTeachers = teachers.filter(
         (teacher) =>
             (!filters.department || teacher.department === filters.department) &&
-            (!filters.subject || teacher.subject === filters.subject)
+            (!filters.subject || teacher.subject === filters.subject) &&
+            (!filters.search || teacher.name.toLowerCase().includes(filters.search.toLowerCase()))
     );
 
     return (
@@ -64,13 +66,23 @@ const TeacherManagement = () => {
                         <option value="Literature">Literature</option>
                     </select>
                 </div>
-                <div className="flex-grow">
+                <div className="flex-grow relative">
                     <label className="text-gray-600 font-semibold">Search</label>
                     <input
                         type="text"
+                        name='search'
                         placeholder="Search by name"
+                        value={filters.search}
+                        onChange={handleFilterChange}
                         className="block w-full mt-1 p-2 border rounded-lg"
                     />
+                    <FaSearch className='absolute top-10 right-2' />
+                </div>
+                {/* Add Teacher Button */}
+                <div className='flex justify-center mt-7'>
+                    <button className="bg-blue-500 text-white px-4 rounded-lg shadow-md hover:bg-blue-600 transition">
+                        + Add Teacher
+                    </button>
                 </div>
             </div>
 
@@ -80,6 +92,7 @@ const TeacherManagement = () => {
                     <thead>
                         <tr className="bg-blue-500 text-white">
                             <th className="py-2 px-4 text-left">ID</th>
+                            <th className="py-2 px-4 text-left">Photo</th>
                             <th scope="col" className="py-2 px-4 text-left">
                                 Name
                             </th>
@@ -98,10 +111,13 @@ const TeacherManagement = () => {
                         {filteredTeachers.map((teacher) => (
                             <tr key={teacher.id}>
                                 <td className="py-2 px-4">{teacher.id}</td>
+                                <td className='pt-2'>
+                                    <img className="w-16 h-16 rounded-full m-2 object-cover" src={teacher?.photo || "https://i.postimg.cc/c18J2RvR/passport-Abubakar.jpg"} alt={teacher?.name} />
+                                </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{teacher.name}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{teacher.department}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{teacher.subject}</td>
-                                <td className="py-2 px-4 flex justify-center items-center">
+                                <td className="py-2 px-4 h-full text-center">
                                     <button className="bg-green-500 text-white px-2 py-1 rounded mr-2">Edit</button>
                                     <button className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                                 </td>
