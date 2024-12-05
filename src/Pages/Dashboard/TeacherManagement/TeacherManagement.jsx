@@ -5,6 +5,10 @@ import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+console.log(image_hosting_key);
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const TeacherManagement = () => {
     const axiosPublic = useAxiosPublic();
     const [isOtherDepartment, setIsOtherDepartment] = useState(false);
@@ -38,31 +42,43 @@ const TeacherManagement = () => {
     );
 
     const onSubmit = async (data) => {
-        console.log(data);
+        const imageFile = { image: data.image[0] }
+        console.log(imageFile);
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        const teacherPhoto = res?.data?.data?.display_url
+        console.log(res?.data?.data?.display_url);
+        if (res.data.success) {
+            const teacherData = {
+                name: data?.name,
+                photo: teacherPhoto,
+                department: data?.department,
+                subject: data?.subject,
+            };
 
-        const teacherData = {
-            name: data.name,
-            photo: "",
-            department: data.departmentSelect,
-            subject: data.subject,
-        };
+            console.log(teacherData);
 
-        console.log(teacherData);
+            // Post teacher data to the server
+            const res = await axiosPublic.post('/teachers', teacherData);
+            console.log(res.data);
 
-        // Post teacher data to the server
-        const res = await axiosPublic.post('/teachers', teacherData);
-        console.log(res.data);
+            if (res.data.insertedId) {
+                reset();
+                setIsOtherDepartment(false)
+                setIsModalOpen(false); // Close modal on success
+                refetch()
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${data.name} has been added as a teacher`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
 
-        if (res.data.insertedId) {
-            reset();
-            setIsModalOpen(false); // Close modal on success
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: `${data.name} has been added as a teacher`,
-                showConfirmButton: false,
-                timer: 1500,
-            });
         }
     };
 
@@ -190,9 +206,24 @@ const TeacherManagement = () => {
                         {filteredTeachers.map((teacher) => (
                             <tr key={teacher._id}>
                                 <td className="py-2 px-4">{teacher.id}</td>
-                                <td className='pt-2'>
-                                    <img className="w-16 h-16 rounded-full m-2 object-cover" src={teacher?.photo || "https://i.postimg.cc/c18J2RvR/passport-Abubakar.jpg"} alt={teacher?.name} />
+                                <td className="pt-2">
+                                    {teacher?.photo ? (
+                                        <img
+                                            className="w-16 h-16 rounded-full m-2 object-cover"
+                                            src={teacher.photo}
+                                            alt={teacher?.name}
+                                        />
+                                    ) : (
+                                        <div className="w-16 h-16 rounded-full m-2 bg-blue-300 flex items-center justify-center text-xl font-bold text-white">
+                                            {teacher?.name
+                                                ?.split(" ")
+                                                .map((word) => word[0])
+                                                .join("")
+                                                .toUpperCase()}
+                                        </div>
+                                    )}
                                 </td>
+
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{teacher.name}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{teacher.department}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{teacher.subject}</td>
@@ -226,6 +257,7 @@ const TeacherManagement = () => {
                                 />
                             </div>
 
+
                             {/* Department */}
                             <div className="form-control w-full my-4">
                                 <label className="label">
@@ -233,7 +265,7 @@ const TeacherManagement = () => {
                                 </label>
                                 <select
                                     defaultValue="default"
-                                    {...register("departmentSelect", { required: true })}
+                                    {...register("department", { required: true })}
                                     className="select select-bordered w-full"
                                     onChange={(e) => setIsOtherDepartment(e.target.value === "Other")}
                                 >
@@ -279,6 +311,10 @@ const TeacherManagement = () => {
                                     placeholder="Enter subject"
                                     className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-black w-full"
                                 />
+                            </div>
+                            {/* Teacher Photo */}
+                            <div className='border-2 border-gray-300 rounded-lg mb-5 p-1'>
+                                <input  {...register("image", { required: true })} type="file" className="file-input w-full " />
                             </div>
 
                             {/* Buttons */}
