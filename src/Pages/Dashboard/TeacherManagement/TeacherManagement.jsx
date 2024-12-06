@@ -20,8 +20,8 @@ const TeacherManagement = () => {
         department: '',
         subject: '',
     });
-     // Initial departments array
-     const [departments, setDepartments] = useState([
+    // Initial departments array
+    const [departments, setDepartments] = useState([
         "Science",
         "Mathematics",
         "English",
@@ -33,7 +33,7 @@ const TeacherManagement = () => {
         "ICT",
         "Other",
     ]);
-   
+
 
     const { data: teachers = [], isLoading, isError, error, refetch } = useQuery({
         queryKey: ['teachers'],
@@ -42,7 +42,7 @@ const TeacherManagement = () => {
             return res.data;
         },
     });
-    // console.log(teachers);
+    console.log(teachers);
     useEffect(() => {
         // Extract departments from teacherData
         const backendDepartments = teachers.map((teacher) => teacher.department);
@@ -50,7 +50,7 @@ const TeacherManagement = () => {
         // Add new departments from backend if not already in the array
         backendDepartments.forEach((dept) => {
             if (!departments.includes(dept)) {
-                setDepartments((prevDepartments) => [dept , ...prevDepartments]);
+                setDepartments((prevDepartments) => [dept, ...prevDepartments]);
             }
         });
     }, [teachers, departments]);
@@ -68,43 +68,59 @@ const TeacherManagement = () => {
     );
 
     const onSubmit = async (data) => {
-        const imageFile = { image: data.image[0] }
-        console.log(imageFile);
-        const res = await axiosPublic.post(image_hosting_api, imageFile, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
+        const teacherData = {
+            name: data?.name,
+            department: data?.department,
+            subject: data?.subject,
+        };
+
+        if (data.image?.[0]) {
+            const imageFile = { image: data.image[0] };
+            const res = await axiosPublic.post(image_hosting_api, imageFile, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+
+            teacherData.photo = res?.data?.data?.display_url || editingTeacher?.photo;
+        }
+        console.log(teacherData);
+
+        if (isEditMode) {
+            // Update existing teacher
+            try {
+                const res = await axiosPublic.patch(`/teachers/${editingTeacher._id}`, teacherData);
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${data.name} has been updated successfully!`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    refetch();
+                    closeModal();
+                }
+            } catch (error) {
+                console.error("Error updating teacher:", error);
             }
-        });
-        const teacherPhoto = res?.data?.data?.display_url
-        console.log(res?.data?.data?.display_url);
-        if (res.data.success) {
-            const teacherData = {
-                name: data?.name,
-                photo: teacherPhoto,
-                department: data?.department,
-                subject: data?.subject,
-            };
-
-            console.log(teacherData);
-
-            // Post teacher data to the server
-            const res = await axiosPublic.post('/teachers', teacherData);
-            console.log(res.data);
-
-            if (res.data.insertedId) {
-                reset();
-                setIsOtherDepartment(false)
-                setIsModalOpen(false); // Close modal on success
-                refetch()
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: `${data.name} has been added as a teacher`,
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+        } else {
+            // Add new teacher
+            try {
+                const res = await axiosPublic.post('/teachers', teacherData);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${data.name} has been added successfully!`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    refetch();
+                    reset();
+                    closeModal();
+                }
+            } catch (error) {
+                console.error("Error adding teacher:", error);
             }
-
         }
     };
 
