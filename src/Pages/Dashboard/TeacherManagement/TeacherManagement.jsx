@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaSearch } from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -6,18 +6,34 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-console.log(image_hosting_key);
+// console.log(image_hosting_key);
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const TeacherManagement = () => {
     const axiosPublic = useAxiosPublic();
     const [isOtherDepartment, setIsOtherDepartment] = useState(false);
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, setValue } = useForm();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isEditMode, setIsEditMode] = useState(false);
+    const [editingTeacher, setEditingTeacher] = useState(null);
     const [filters, setFilters] = useState({
         department: '',
         subject: '',
     });
+     // Initial departments array
+     const [departments, setDepartments] = useState([
+        "Science",
+        "Mathematics",
+        "English",
+        "Bangla",
+        "History",
+        "Geography",
+        "Religious Studies",
+        "Physical Education",
+        "ICT",
+        "Other",
+    ]);
+   
 
     const { data: teachers = [], isLoading, isError, error, refetch } = useQuery({
         queryKey: ['teachers'],
@@ -26,8 +42,18 @@ const TeacherManagement = () => {
             return res.data;
         },
     });
-    console.log(teachers);
+    // console.log(teachers);
+    useEffect(() => {
+        // Extract departments from teacherData
+        const backendDepartments = teachers.map((teacher) => teacher.department);
 
+        // Add new departments from backend if not already in the array
+        backendDepartments.forEach((dept) => {
+            if (!departments.includes(dept)) {
+                setDepartments((prevDepartments) => [dept , ...prevDepartments]);
+            }
+        });
+    }, [teachers, departments]);
 
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
@@ -93,7 +119,7 @@ const TeacherManagement = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                console.log(teacher._id);
+                // console.log(teacher._id);
                 axiosPublic.delete(`/teachers/${teacher._id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
@@ -112,11 +138,26 @@ const TeacherManagement = () => {
 
     }
 
-    const openModal = () => setIsModalOpen(true);
+    const openModal = (teacher = null) => {
+        setIsModalOpen(true);
+        if (teacher) {
+            setIsEditMode(true);
+            setEditingTeacher(teacher);
+            // Populate form fields with the teacher's data
+            setValue('name', teacher.name);
+            setValue('department', teacher.department);
+            setValue('subject', teacher.subject);
+        } else {
+            setIsEditMode(false);
+            reset();
+        }
+    };
     const closeModal = () => {
         reset();
         setIsModalOpen(false);
+        setIsEditMode(false);
         setIsOtherDepartment(false)
+        setEditingTeacher(null)
     };
 
     return (
@@ -174,7 +215,7 @@ const TeacherManagement = () => {
                 {/* Add Teacher Button */}
                 <div className='flex justify-center mt-7'>
                     <button
-                        onClick={openModal}
+                        onClick={() => openModal()}
                         className="bg-blue-500 text-white px-4 rounded-lg shadow-md hover:bg-blue-600 transition">
                         + Add Teacher
                     </button>
@@ -228,7 +269,7 @@ const TeacherManagement = () => {
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{teacher.department}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{teacher.subject}</td>
                                 <td className="py-2 px-4 h-full text-center">
-                                    <button className="bg-green-500 text-white px-2 py-1 rounded mr-2">Edit</button>
+                                    <button onClick={() => openModal(teacher)} className="bg-green-500 text-white px-2 py-1 rounded mr-2">Edit</button>
                                     <button onClick={() => handleDeleteUser(teacher)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                                 </td>
                             </tr>
@@ -238,11 +279,11 @@ const TeacherManagement = () => {
             </div>
 
 
-            {/* Modal */}
+            {/* Modal for add teacher */}
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] sm:w-[80%] md:w-[60%] lg:w-[40%] mx-auto">
-                        <h3 className="text-lg font-semibold mb-4 text-center">Add New Teacher</h3>
+                        <h3 className="text-lg font-semibold mb-4 text-center">{isEditMode ? 'Edit Teacher' : 'Add New Teacher'}</h3>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/* Teacher Name */}
                             <div className="form-control w-full my-4">
@@ -252,7 +293,7 @@ const TeacherManagement = () => {
                                 <input
                                     type="text"
                                     {...register("name", { required: true })}
-                                    placeholder="Enter teacher's name"
+                                    placeholder={isEditMode ? editingTeacher?.name : 'Enter name'}
                                     className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-black w-full"
                                 />
                             </div>
@@ -264,24 +305,20 @@ const TeacherManagement = () => {
                                     <span className="label-text">Department*</span>
                                 </label>
                                 <select
-                                    defaultValue="default"
+                                    defaultValue={editingTeacher?.department === "Other" ? "Other" : editingTeacher?.department || "default"}
                                     {...register("department", { required: true })}
+                                    placeholder={isEditMode ? editingTeacher?.department : 'Enter department'}
                                     className="select select-bordered w-full"
                                     onChange={(e) => setIsOtherDepartment(e.target.value === "Other")}
                                 >
                                     <option disabled value="default">
                                         Select a department
                                     </option>
-                                    <option value="Science">Science</option>
-                                    <option value="Mathematics">Mathematics</option>
-                                    <option value="English">English</option>
-                                    <option value="Bangla">Bangla</option>
-                                    <option value="History">History</option>
-                                    <option value="Geography">Geography</option>
-                                    <option value="Religious Studies">Religious Studies</option>
-                                    <option value="Physical Education">Physical Education</option>
-                                    <option value="ICT">ICT</option>
-                                    <option value="Other">Other</option>
+                                    {departments.map((department) => (
+                                        <option key={department} value={department}>
+                                            {department}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
 
@@ -294,7 +331,9 @@ const TeacherManagement = () => {
                                     <input
                                         type="text"
                                         {...register("department", { required: true })}
-                                        placeholder="Enter department name"
+                                        defaultValue={editingTeacher?.department !== "Other" ? "" : editingTeacher?.department}
+                                        // placeholder="Enter department name"
+                                        placeholder={isEditMode ? editingTeacher?.department : 'Enter department name'}
                                         className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-black w-full"
                                     />
                                 </div>
@@ -330,7 +369,7 @@ const TeacherManagement = () => {
                                     type="submit"
                                     className="btn btn-primary px-4 py-2 text-sm md:text-base"
                                 >
-                                    Add Teacher
+                                    {isEditMode ? 'Update' : 'Add teacher'}
                                 </button>
                             </div>
                         </form>
