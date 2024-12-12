@@ -4,6 +4,20 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { Link } from 'react-router-dom';
+import { PointElement } from 'chart.js';
+import { Line, Pie } from 'react-chartjs-2'; // Import Line and Pie charts
+import {
+  Chart as ChartJS,
+  LineElement,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+// Register Chart.js components
+ChartJS.register(LineElement, PointElement, ArcElement, CategoryScale, LinearScale, Tooltip, Legend);
+
 import './FullCalendarCustom.css'; // Import the custom styles
 import { FaChalkboardTeacher, FaSchool, FaUserGraduate } from 'react-icons/fa';
 
@@ -43,6 +57,59 @@ const AdminHome = () => {
 
     // Add the new event to the state
     setEvents((prevEvents) => [...prevEvents, { title, date }]);
+  };
+
+
+  const lineChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false, // Allows the chart to fill its container
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top', // Position the legend
+      },
+      tooltip: {
+        enabled: true, // Show tooltips
+      },
+    },
+  };
+
+  const pieChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom', // Position the legend
+      },
+    },
+  };
+
+
+  // Chart Data
+  const lineChartData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        label: 'Student Registrations',
+        data: [5, 20, 15, 30, 25, 35, 40],
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        tension: 0.4,
+      },
+    ],
+  };
+
+  const pieChartData = {
+    labels: ['Students', 'Teachers', 'Classes'],
+    datasets: [
+      {
+        label: 'Website Distribution',
+        data: [stats.students, stats.teachers, stats.classes],
+        backgroundColor: ['#42A5F5', '#66BB6A', '#AB47BC'],
+        hoverOffset: 4,
+      },
+    ],
   };
 
   return (
@@ -95,6 +162,24 @@ const AdminHome = () => {
             ))}
           </ul>
         </div>
+        {/* Charts */}
+        <div className="col-span-1 md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white p-4 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-4">Student Registrations Over Time</h2>
+
+            <div className="relative w-full h-64 md:h-80 lg:h-96">
+              <Line data={lineChartData} options={lineChartOptions} />
+            </div>
+
+          </div>
+
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-4">Website Distribution</h2>
+            <div className="relative w-full h-64 md:h-96">
+              <Pie data={pieChartData} options={pieChartOptions} />
+            </div>
+          </div>
+        </div>
 
         {/* Quick Actions with Modals */}
         <div className="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -122,7 +207,7 @@ const AdminHome = () => {
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
         <div className='flex justify-between items-center'>
           <h2 className="text-xl font-semibold mb-4">Upcoming Events</h2>
-          
+
 
           <button
             onClick={handleAddEvent}
