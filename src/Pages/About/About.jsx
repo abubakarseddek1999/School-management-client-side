@@ -1,4 +1,3 @@
-import React from 'react';
 import img1 from '../../assets/image/About/aboutbanner1.jpeg'
 import img2 from '../../assets/image/About/aboutbanner2.jpeg'
 import abubakar from '../../assets/image/Teachers/abubakar.png'
@@ -13,8 +12,14 @@ import image1 from "../../assets/image/home_school2_pic1.jpg"
 import image2 from "../../assets/image/About/about.png"
 import PrimaryButton from '../../Components/SectionTitle/PrimaryButton';
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import UseTeachers from '../../Hooks/UseTeachers'
 
 const About = () => {
+  
+    const TeacherData = UseTeachers();
+    const {teachers,isLoading,isError,error,refetch}= TeacherData;
+    console.log(teachers);
+
     const TeachersInfo = [
         {
             name: "Sabiha akter",
@@ -66,36 +71,36 @@ const About = () => {
         },
 
     ]
+
     return (
         <div className='py-20 md:py-20 lg:py-14 '>
             {/* Banner */}
-            {/* Banner */}
             <div className='relative hidden md:block w-full h-[400px] md:h-[500px] lg:h-[780px] md:justify-center items-center bg-contain md:bg-cover'>
-    {/* Blurred background image (img1) */}
-    <div
-        className='absolute top-0 left-0 w-full h-full'
-        style={{
-            backgroundImage: `url(${img1})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: '100% 750px',
-            filter: 'blur(10px)', // Apply blur only to img1
-            zIndex: 1, // Make sure it's behind img2
-        }}
-    ></div>
+                {/* Blurred background image (img1) */}
+                <div
+                    className='absolute top-0 left-0 w-full h-full'
+                    style={{
+                        backgroundImage: `url(${img1})`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
+                        backgroundSize: '100% 750px',
+                        filter: 'blur(10px)', // Apply blur only to img1
+                        zIndex: 1, // Make sure it's behind img2
+                    }}
+                ></div>
 
-    {/* Clear foreground image (img2) */}
-    <div
-        className='relative w-full h-[400px] md:h-[500px] lg:h-[780px] md:justify-center items-center bg-contain md:bg-cover z-20'
-        style={{
-            backgroundImage: `url(${img1})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: '80% 750px',
-            zIndex: 2, // Ensure it's above the blurred image
-        }}
-    ></div>
-</div>
+                {/* Clear foreground image (img2) */}
+                <div
+                    className='relative w-full h-[400px] md:h-[500px] lg:h-[780px] md:justify-center items-center bg-contain md:bg-cover z-20'
+                    style={{
+                        backgroundImage: `url(${img1})`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
+                        backgroundSize: '80% 750px',
+                        zIndex: 2, // Ensure it's above the blurred image
+                    }}
+                ></div>
+            </div>
 
 
 
@@ -227,6 +232,28 @@ const About = () => {
                                 <div className='flex flex-col justify-center items-center p-2 w-full'>
                                     <p className='text-3xl font-bold'>{item?.name}</p>
                                     <p className='font-bold'>{item?.title}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    )}
+
+
+
+                </div>
+            </div>
+            {/* Our Teacher */}
+            <div className='max-w-[1400px] mx-auto'>
+                <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5'>
+
+                    {teachers.map(item =>
+                        <div key={item.i} className='flex flex-col justify-center items-center  md:border-2 shadow-lg  duration-200 transform hover:scale-105'>
+                            <img className='rounded-md object-cover md:w-[400px] h-[300px]' src={item?.photo} alt="Teacher img" />
+
+                            <div className='w-full flex justify-center items-center'>
+                                <div className='flex flex-col justify-center items-center p-2 w-full'>
+                                    <p className='text-3xl font-bold'>{item?.name}</p>
+                                    <p className='font-bold'>{item?.subject}</p>
                                 </div>
                             </div>
                         </div>
