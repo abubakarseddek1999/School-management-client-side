@@ -1,13 +1,13 @@
 import img1 from '../../assets/image/About/aboutbanner1.jpeg'
-import img2 from '../../assets/image/About/aboutbanner2.jpeg'
-import abubakar from '../../assets/image/Teachers/abubakar.png'
-import sabiha from '../../assets/image/Teachers/sabiha.png'
-import jannat from '../../assets/image/Teachers/jannat.png'
-import samia from '../../assets/image/Teachers/samia.png'
-import ajoy from '../../assets/image/Teachers/ajoy.png'
-import anop from '../../assets/image/Teachers/anop.png'
-import riaz from "../../assets/image/Teachers/riaz.png"
-import purubi from "../../assets/image/Teachers/purubi.png"
+// import img2 from '../../assets/image/About/aboutbanner2.jpeg'
+// import abubakar from '../../assets/image/Teachers/abubakar.png'
+// import sabiha from '../../assets/image/Teachers/sabiha.png'
+// import jannat from '../../assets/image/Teachers/jannat.png'
+// import samia from '../../assets/image/Teachers/samia.png'
+// import ajoy from '../../assets/image/Teachers/ajoy.png'
+// import anop from '../../assets/image/Teachers/anop.png'
+// import riaz from "../../assets/image/Teachers/riaz.png"
+// import purubi from "../../assets/image/Teachers/purubi.png"
 import image1 from "../../assets/image/home_school2_pic1.jpg"
 import image2 from "../../assets/image/About/about.png"
 import PrimaryButton from '../../Components/SectionTitle/PrimaryButton';
@@ -15,62 +15,62 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import UseTeachers from '../../Hooks/UseTeachers'
 
 const About = () => {
-  
+
     const TeacherData = UseTeachers();
-    const {teachers,isLoading,isError,error,refetch}= TeacherData;
+    const { teachers, isLoading, isError, error, refetch } = TeacherData;
     console.log(teachers);
 
-    const TeachersInfo = [
-        {
-            name: "Sabiha akter",
-            title: "Math Teacher",
-            image: sabiha,
+    // const TeachersInfo = [
+    //     {
+    //         name: "Sabiha akter",
+    //         title: "Math Teacher",
+    //         image: sabiha,
 
-        },
-        {
-            name: "Jannat akter",
-            title: "English Teacher",
-            image: jannat,
+    //     },
+    //     {
+    //         name: "Jannat akter",
+    //         title: "English Teacher",
+    //         image: jannat,
 
-        },
-        {
-            name: "Samia akter",
-            title: "Math Teacher",
-            image: samia,
+    //     },
+    //     {
+    //         name: "Samia akter",
+    //         title: "Math Teacher",
+    //         image: samia,
 
-        },
-        {
-            name: "Purabi ",
-            title: "Biology Teacher",
-            image: purubi,
+    //     },
+    //     {
+    //         name: "Purabi ",
+    //         title: "Biology Teacher",
+    //         image: purubi,
 
-        },
-        {
-            name: "Riaz Uddin",
-            title: "ICT Teacher",
-            image: riaz
+    //     },
+    //     {
+    //         name: "Riaz Uddin",
+    //         title: "ICT Teacher",
+    //         image: riaz
 
-        },
-        {
-            name: "Anop Kumar",
-            title: "English Teacher",
-            image: anop
+    //     },
+    //     {
+    //         name: "Anop Kumar",
+    //         title: "English Teacher",
+    //         image: anop
 
-        },
-        {
-            name: " Abu bakar",
-            title: "ICT Teacher",
-            image: abubakar
+    //     },
+    //     {
+    //         name: " Abu bakar",
+    //         title: "ICT Teacher",
+    //         image: abubakar
 
-        },
-        {
-            name: " Ajoy Baishnab",
-            title: "Chemistry Teacher",
-            image: ajoy
+    //     },
+    //     {
+    //         name: " Ajoy Baishnab",
+    //         title: "Chemistry Teacher",
+    //         image: ajoy
 
-        },
+    //     },
 
-    ]
+    // ]
 
     return (
         <div className='py-20 md:py-20 lg:py-14 '>
@@ -215,53 +215,25 @@ const About = () => {
 
             </div>
 
-            {/* THE GUIDING PRINCIPLES*/}
-
-
-
-            {/* Our Teacher */}
-            <div className='max-w-[1400px] mx-auto'>
-                <p className='text-4xl font-bold text-center p-5'>Our Teacher</p>
-                <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5'>
-
-                    {TeachersInfo.map(item =>
-                        <div key={item.i} className='flex flex-col justify-center items-center  md:border-2 shadow-lg  duration-200 transform hover:scale-105'>
-                            <img className='rounded-md object-cover md:w-[400px] h-[300px]' src={item?.image} alt="Teacher img" />
-
-                            <div className='w-full flex justify-center items-center'>
-                                <div className='flex flex-col justify-center items-center p-2 w-full'>
-                                    <p className='text-3xl font-bold'>{item?.name}</p>
-                                    <p className='font-bold'>{item?.title}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    )}
-
-
-
-                </div>
-            </div>
             {/* Our Teacher */}
             <div className='max-w-[1400px] mx-auto'>
                 <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5'>
 
                     {teachers.map(item =>
-                        <div key={item.i} className='flex flex-col justify-center items-center  md:border-2 shadow-lg  duration-200 transform hover:scale-105'>
+                        <div key={item.i} className='bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] border p-2 w-full max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4'>
                             <img className='rounded-md object-cover md:w-[400px] h-[300px]' src={item?.photo} alt="Teacher img" />
 
                             <div className='w-full flex justify-center items-center'>
                                 <div className='flex flex-col justify-center items-center p-2 w-full'>
                                     <p className='text-3xl font-bold'>{item?.name}</p>
-                                    <p className='font-bold'>{item?.subject}</p>
+                                    <p className='font-bold'>{item?.subject} Teacher</p>
                                 </div>
                             </div>
+
+                            {/* <button type="button"
+                                className="mt-2 px-5 py-2.5 w-full rounded-lg text-white text-sm tracking-wider font-semibold border-none outline-none bg-blue-600 hover:bg-blue-700">View Details</button> */}
                         </div>
-
                     )}
-
-
-
                 </div>
             </div>
 

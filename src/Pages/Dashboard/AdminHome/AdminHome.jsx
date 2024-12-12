@@ -19,7 +19,7 @@ import {
 ChartJS.register(LineElement, PointElement, ArcElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 import './FullCalendarCustom.css'; // Import the custom styles
-import { FaChalkboardTeacher, FaSchool, FaUserGraduate } from 'react-icons/fa';
+import { FaChalkboardTeacher, FaSchool, FaSearch, FaUserGraduate } from 'react-icons/fa';
 
 const AdminHome = () => {
   const [stats, setStats] = useState({ students: 0, teachers: 0, classes: 0 });
@@ -114,13 +114,14 @@ const AdminHome = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <header className="bg-white shadow-lg p-4 rounded-lg mb-6 flex justify-between items-center">
+      <header className="bg-white shadow-lg p-4 rounded-lg mb-6 flex justify-between items-center relative">
         <h1 className="text-2xl font-semibold text-gray-800">Admin Dashboard</h1>
         <input
           type="text"
           placeholder="Search..."
           className="p-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
         />
+        <FaSearch className='absolute right-7'></FaSearch>
       </header>
 
       <main className="grid grid-cols-1 md:grid-cols-3 gap-6">
