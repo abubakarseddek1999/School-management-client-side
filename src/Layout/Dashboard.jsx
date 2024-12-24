@@ -1,6 +1,7 @@
 import { useState } from "react";
 import logo from "../assets/image/logo.png";
 import { FaAd, FaCalendar, FaEnvelope, FaHome, FaList, FaUsers } from "react-icons/fa";
+import { TbReportSearch } from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
 import { RiMenuFold2Fill, RiMenuFold3Fill } from "react-icons/ri";
 import { PiStudentFill } from "react-icons/pi";
@@ -16,7 +17,7 @@ const Dashboard = () => {
     { path: "/dashboard/studentManage", icon: <FaList className="text-3xl" />, label: "Manage Student" },
     { path: "/dashboard/allUsers", icon: <FaUsers className="text-3xl" />, label: "All Users" },
     { path: "/dashboard/teacherMange", icon: <FaUsers className="text-3xl" />, label: "Manage Teacher" },
-    { path: "/dashboard/viewReports", icon: <MdBugReport className="text-3xl" />, label: "View Reports" },
+    { path: "/dashboard/viewReports", icon: <TbReportSearch className="text-3xl" />, label: "View Reports" },
     { path: "/dashboard/review", icon: <MdOutlinePreview className="text-3xl" />, label: "Review" },
     { path: "/dashboard/paymentHistory", icon: <FaCalendar className="text-3xl" />, label: "Payment History" },
     { path: "/dashboard/paymentRealHistory", icon: <FaList className="text-3xl" />, label: "Payment Real History" },

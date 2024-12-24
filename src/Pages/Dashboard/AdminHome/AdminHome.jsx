@@ -113,7 +113,7 @@ const AdminHome = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gray-100 p-4">
       <header className="bg-white shadow-lg p-4 rounded-lg mb-6 flex justify-between items-center relative">
         <h1 className="text-2xl font-semibold text-gray-800">Admin Dashboard</h1>
         <input
@@ -195,11 +195,14 @@ const AdminHome = () => {
           >
             Manage Teacher
           </button></Link>
-          <button
-            className="bg-blue-500 w-full text-white p-4 rounded-lg shadow-md hover:bg-blue-600"
-          >
-            View Reports
-          </button>
+          <Link to={"/dashboard/viewReports"}>
+            <button
+              className="bg-blue-500 w-full text-white p-4 rounded-lg shadow-md hover:bg-blue-600"
+            >
+              View Reports
+            </button>
+          </Link>
+
 
         </div>
       </main>
