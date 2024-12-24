@@ -17,6 +17,12 @@ import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import StudentManagement from "../Pages/Dashboard/MangeStudents/StudentManagement";
 import TeacherManagement from "../Pages/Dashboard/TeacherManagement/TeacherManagement";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import PaymentRealHistory from "../Pages/Dashboard/paymentRealHistory/PaymentRealHistory";
+import PaymentHistory from "../Pages/Dashboard/payment_history/PaymentHistory";
+import ViewReports from "../Pages/Dashboard/viewReports/ViewReports";
+import Review from "../Pages/Dashboard/Review/Review";
+import AddStudents from "../Pages/Dashboard/addStudents/AddStudent";
+import AddStudent from "../Pages/Dashboard/addStudents/AddStudent";
 
   export const router = createBrowserRouter([
     {
@@ -79,6 +85,27 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
             path: 'allUsers',
             element:<AllUsers></AllUsers>
         },
+        {
+            path: 'paymentRealHistory',
+            element:<PaymentRealHistory></PaymentRealHistory>
+        },
+        {
+            path: 'paymentHistory',
+            element:<PaymentHistory></PaymentHistory>
+        },
+        {
+            path: 'viewReports',
+            element:<ViewReports></ViewReports>
+        },
+        {
+            path: 'review',
+            element:<Review></Review>
+        },
+        {
+            path: 'addStudent',
+            element:<AddStudent></AddStudent>
+        },
+       
         
       ]
     },
