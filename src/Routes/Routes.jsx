@@ -20,7 +20,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import PaymentRealHistory from "../Pages/Dashboard/paymentRealHistory/PaymentRealHistory";
 import PaymentHistory from "../Pages/Dashboard/payment_history/PaymentHistory";
 import ViewReports from "../Pages/Dashboard/viewReports/ViewReports";
-import Review from "../Pages/Dashboard/Review/Review";
+import AdminReviewPage from "../Pages/Dashboard/adminReviewpage/AdminReviewPage";
 import AddStudents from "../Pages/Dashboard/addStudents/AddStudent";
 import AddStudent from "../Pages/Dashboard/addStudents/AddStudent";
 
@@ -99,7 +99,7 @@ import AddStudent from "../Pages/Dashboard/addStudents/AddStudent";
         },
         {
             path: 'review',
-            element:<Review></Review>
+            element:<AdminReviewPage></AdminReviewPage>
         },
         {
             path: 'addStudent',
