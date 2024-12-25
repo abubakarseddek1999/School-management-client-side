@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { MdDelete } from "react-icons/md";
+import Rating from "react-rating-stars-component";
 import Swal from "sweetalert2";
 import Pagination from "../../../Components/Pagination/Pagination";
 
@@ -150,14 +151,28 @@ const AdminReviewPage = () => {
           </thead>
           <tbody>
             {currentReviews.map((review) => (
-              <tr key={review.id} className="border-b py">
-                <td className="p-3 text-sm break-words">{review.user}</td>
-                <td className="p-3 text-sm whitespace-nowrap">
+              <tr key={review.id} className="border-b">
+                <td className="p-3  whitespace-nowrap py-5">{review.user}</td>
+                <td className="p-3  whitespace-nowrap">
                   {review.date || <span className="text-red-500">No date</span>}
                 </td>
-                <td className="p-3 text-sm break-words">{review.rating} ⭐</td>
-                <td className="p-3 text-sm break-words">{review.feedback}</td>
-                <td className="p-3 text-sm break-words">
+                <td className="p-3  whitespace-nowrap">
+                  <div
+                    className="flex items-center space-x-1"
+                    style={{ width: "150px" }}
+                  >
+                    <Rating
+                      count={5} // Maximum number of stars
+                      value={review.rating} // Rating value from the review
+                      edit={false} // Make it read-only
+                      size={25} // Size of the stars
+                      activeColor="#F5BF03" // Gold color for active stars
+                    />
+                  </div>
+                </td>
+
+                <td className="p-3  break-words">{review.feedback}</td>
+                <td className="p-3  break-words">
                   <span
                     className={
                       review.status === "Pending"
@@ -170,11 +185,11 @@ const AdminReviewPage = () => {
                     {review.status}
                   </span>
                 </td>
-                <td className="p-3 text-sm break-words">
+                <td className="p-3  break-words">
                   {review.status === "Pending" ? (
                     <div className="flex">
                       <button
-                        className="bg-green-500 text-white px-3 py-1 rounded mr-2 text-sm"
+                        className="bg-green-500 text-white px-3 py-1 rounded mr-2 "
                         onClick={() => handleApprove(review._id)}
                       >
                         Approve
