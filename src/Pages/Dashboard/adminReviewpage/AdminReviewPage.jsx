@@ -149,9 +149,12 @@ const AdminReviewPage = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold text-gray-700 mb-6">
-        Review Management
-      </h1>
+      <div className="flex justify-between">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-700 mb-6">
+          Review Management
+        </h1>
+        <p> Toatal review: {reviews.length}</p>
+      </div>
 
       <div className="bg-white p-4 rounded-lg shadow-md flex gap-4 mb-2">
         {/* Filter by Status */}

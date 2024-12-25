@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Pagination from "../../../Components/Pagination/Pagination";
+import { Link } from "react-router-dom";
 
 const StudentManagement = () => {
   const [filters, setFilters] = useState({
@@ -7,6 +9,9 @@ const StudentManagement = () => {
     section: "",
   });
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const studentsPerPage = 15;
+
   //   const [students, setStudents] = useState([
 
   //     { id: 1, name: "John Doe", class: "7", religion: "Christianity", section: "A" },
@@ -154,10 +159,29 @@ const StudentManagement = () => {
       (!searchQuery || student.name.toLowerCase().includes(searchQuery))
     );
   });
+  const handleResetFilters = () => {
+    setFilters({ class: "", religion: "", section: "" });
+    setSearchQuery("");
+    setCurrentPage(1);
+  };
+
+  const totalPages = Math.ceil(filteredStudents.length / studentsPerPage);
+  // Get students for the current page
+  const indexOfLastStudent = currentPage * studentsPerPage;
+  const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
+  const currentStudents = filteredStudents.slice(
+    indexOfFirstStudent,
+    indexOfLastStudent
+  );
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h2 className="text-2xl font-bold text-gray-700 mb-6">Manage Students</h2>
+      <div className="flex justify-between">
+        <h2 className="text-2xl font-bold text-gray-700 mb-6">
+          Manage Students
+        </h2>
+        <p>Total student: {students.length}</p>
+      </div>
 
       {/* Filter Section */}
       <div className="bg-white p-4 rounded-lg shadow-md flex gap-4 mb-2">
@@ -217,6 +241,13 @@ const StudentManagement = () => {
             className="block w-full mt-1 p-2 border rounded-lg"
           />
         </div>
+
+        <button
+          onClick={handleResetFilters}
+          className="bg-gray-500 text-white px-4  mt-7 rounded-lg"
+        >
+          Reset
+        </button>
       </div>
 
       {/* Student List Table */}
@@ -229,12 +260,13 @@ const StudentManagement = () => {
               <th className="py-2 px-4 text-left">Class</th>
               <th className="py-2 px-4 text-left">Religion</th>
               <th className="py-2 px-4 text-left">Section</th>
-              <th className="py-2 px-4 text-left">Actions</th>
+              <th className="py-2 px-4 text-center">Actions</th>
+              <th className="py-2 px-4 text-left">Details</th>
             </tr>
           </thead>
           <tbody>
-            {filteredStudents.length ? (
-              filteredStudents.map((student) => (
+            {currentStudents.length ? (
+              currentStudents.map((student) => (
                 <tr key={student.id} className="border-b">
                   <td className="py-2 px-4">{student.id}</td>
                   <td className="py-2 px-4">{student.name}</td>
@@ -249,6 +281,13 @@ const StudentManagement = () => {
                       Delete
                     </button>
                   </td>
+                  <td className="py-2 px-4">
+                    <Link to="/dashboard/studentDetails">
+                      <button className="bg-blue-500  hover:bg-blue-600 text-white px-2 py-1 rounded mr-2">
+                        View
+                      </button>
+                    </Link>
+                  </td>
                 </tr>
               ))
             ) : (
@@ -261,6 +300,12 @@ const StudentManagement = () => {
           </tbody>
         </table>
       </div>
+      {/* Pagination Component */}
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
     </div>
   );
 };

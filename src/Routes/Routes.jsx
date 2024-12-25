@@ -20,6 +20,7 @@ import PaymentHistory from "../Pages/Dashboard/payment_history/PaymentHistory";
 import ViewReports from "../Pages/Dashboard/viewReports/ViewReports";
 import AdminReviewPage from "../Pages/Dashboard/adminReviewpage/AdminReviewPage";
 import AddStudent from "../Pages/Dashboard/addStudents/AddStudent";
+import StudentDetails from "../Pages/Dashboard/studentDetails/StudentDetails";
 
 export const router = createBrowserRouter([
   {
@@ -105,6 +106,10 @@ export const router = createBrowserRouter([
       {
         path: "addStudent",
         element: <AddStudent></AddStudent>,
+      },
+      {
+        path: "studentDetails",
+        element: <StudentDetails></StudentDetails>,
       },
     ],
   },
