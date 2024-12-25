@@ -1,156 +1,214 @@
 import React, { useState } from "react";
-
-const reviewsData = [
-    {
-        id: 1,
-        user: "John Doe",
-        date: "2024-12-20",
-        rating: 5,
-        feedback: "Great experience!",
-        status: "Pending",
-    },
-    {
-        id: 2,
-        user: "Jane Smith",
-        date: "2024-12-19",
-        rating: 4,
-        feedback: "Good service, but could improve.",
-        status: "Reviewed",
-    },
-    {
-        id: 3,
-        user: "Sam Wilson",
-        date: "2024-12-18",
-        rating: 3,
-        feedback: "Average experience.",
-        status: "Pending",
-    },
-    {
-        id: 4,
-        user: "Abu bakar",
-        date: "2024-10-19",
-        rating: 4,
-        feedback: "Good service and impressive",
-        status: "Pending",
-    },
-    {
-        id: 5,
-        user: "Riaz Uddin",
-        date: "2024-12-20",
-        rating: 3,
-        feedback: "not a good.",
-        status: "Rejected",
-    },
-];
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { MdDelete } from "react-icons/md";
+import Swal from "sweetalert2";
+import Pagination from "../../../Components/Pagination/Pagination";
 
 const AdminReviewPage = () => {
-    const [reviews, setReviews] = useState(reviewsData);
-    const [filter, setFilter] = useState("All");
+  const axiosPublic = useAxiosPublic();
+  const [filter, setFilter] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 15; // Number of reviews per page
 
-    const handleApprove = (id) => {
-        setReviews((prev) =>
-            prev.map((review) =>
-                review.id === id ? { ...review, status: "Reviewed" } : review
-            )
-        );
-    };
+  const {
+    data: reviews = [],
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/reviews");
+      return res.data;
+    },
+  });
 
-    const handleReject = (id) => {
-        setReviews((prev) =>
-            prev.map((review) =>
-                review.id === id ? { ...review, status: "Rejected" } : review
-            )
-        );
-    };
+  const handleApprove = async (id) => {
+    try {
+      await axiosPublic.patch(`/reviews/${id}`, { status: "Approved" });
+      refetch(); // Refresh the reviews data
 
-    const filteredReviews =
-        filter === "All"
-            ? reviews
-            : reviews.filter((review) => review.status === filter);
+      Swal.fire({
+        icon: "success",
+        title: "Review Approved!",
+        text: "The review has been approved successfully.",
+      });
+    } catch (error) {
+      console.error("Failed to approve review:", error);
 
-    return (
-        <div className="p-6 bg-gray-100 min-h-screen">
-            <h1 className="text-2xl font-bold mb-6">Admin Review Page</h1>
+      Swal.fire({
+        icon: "error",
+        title: "Approval Failed",
+        text: "There was an error approving the review. Please try again.",
+      });
+    }
+  };
 
-            <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
-                <div className="mb-2 sm:mb-0">
-                    <select
-                        className="p-2 border rounded-lg bg-white"
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value)}
-                    >
-                        <option value="All">All</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Reviewed">Reviewed</option>
-                        <option value="Rejected">Rejected</option>
-                    </select>
-                </div>
-                <div className="text-gray-600">
-                    Total Reviews: {reviews.length}
-                </div>
-            </div>
+  const handleReject = async (id) => {
+    try {
+      await axiosPublic.patch(`/reviews/${id}`, { status: "Rejected" });
+      refetch(); // Refresh the reviews data
 
-            <div className="overflow-x-auto">
-                <table className="w-full table-auto bg-white rounded-lg shadow-md">
-                    <thead>
-                        <tr className="bg-gray-200">
-                            <th className="p-3 text-left">User</th>
-                            <th className="p-3 text-left">Date</th>
-                            <th className="p-3 text-left">Rating</th>
-                            <th className="p-3 text-left">Feedback</th>
-                            <th className="p-3 text-left">Status</th>
-                            <th className="p-3 text-left">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredReviews.map((review) => (
-                            <tr key={review.id} className="border-b">
-                                <td className="p-3 text-sm break-words">{review.user}</td>
-                                <td className="p-3 text-sm whitespace-nowrap">
-                                    {review.date || <span className="text-red-500">Date not provided</span>}
-                                </td>
-                                <td className="p-3 text-sm break-words">{review.rating} ⭐</td>
-                                <td className="p-3 text-sm break-words">{review.feedback}</td>
-                                <td className="p-3 text-sm break-words">
-                                    <span
-                                        className={
-                                            review.status === "Pending"
-                                                ? "text-yellow-500"
-                                                : review.status === "Reviewed"
-                                                    ? "text-green-500"
-                                                    : "text-red-500"
-                                        }
-                                    >
-                                        {review.status}
-                                    </span>
-                                </td>
-                                <td className="p-3 text-sm break-words">
-                                    {review.status === "Pending" && (
-                                        <>
-                                            <div className="flex">
-                                                <button
-                                                    className="bg-green-500 text-white px-3 py-1 rounded mr-2 text-sm"
-                                                    onClick={() => handleApprove(review.id)}
-                                                >
-                                                    Approve
-                                                </button>
-                                                <button
-                                                    className="bg-red-500 text-white px-3 py-1 rounded text-sm"
-                                                    onClick={() => handleReject(review.id)}
-                                                >
-                                                    Reject
-                                                </button>
-                                            </div>
-                                        </>
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+      Swal.fire({
+        icon: "success",
+        title: "Review Rejected!",
+        text: "The review has been rejected successfully.",
+      });
+    } catch (error) {
+      console.error("Failed to reject review:", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Rejection Failed",
+        text: "There was an error rejecting the review. Please try again.",
+      });
+    }
+  };
+
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/reviews/${_id}`).then((res) => {
+          if (res.data.message === "Review deleted successfully") {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Review has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const filteredReviews =
+    filter === "All"
+      ? reviews
+      : reviews.filter((review) => review.status === filter);
+
+  // Pagination logic
+  const indexOfLastReview = currentPage * usersPerPage;
+  const indexOfFirstReview = indexOfLastReview - usersPerPage;
+  const currentReviews = filteredReviews.slice(
+    indexOfFirstReview,
+    indexOfLastReview
+  );
+  const totalPages = Math.ceil(filteredReviews.length / usersPerPage);
+
+  if (isLoading) {
+    return <div>Loading reviews...</div>;
+  }
+
+  if (isError) {
+    return <div>Error fetching reviews: {error.message}</div>;
+  }
+
+  return (
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-2xl font-bold mb-6">Admin Review Page</h1>
+
+      <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
+        <div className="mb-2 sm:mb-0">
+          <select
+            className="p-2 border rounded-lg bg-white"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          >
+            <option value="All">All</option>
+            <option value="Pending">Pending</option>
+            <option value="Reviewed">Reviewed</option>
+            <option value="Rejected">Rejected</option>
+          </select>
         </div>
-    );
+        <div className="text-gray-600">
+          Total Reviews: {filteredReviews.length}
+        </div>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full table-auto bg-white rounded-lg shadow-md">
+          <thead>
+            <tr className="bg-blue-500 text-white">
+              <th className="p-3 text-left">User</th>
+              <th className="p-3 text-left">Date</th>
+              <th className="p-3 text-left">Rating</th>
+              <th className="p-3 text-left">Feedback</th>
+              <th className="p-3 text-left">Status</th>
+              <th className="p-3 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentReviews.map((review) => (
+              <tr key={review.id} className="border-b py">
+                <td className="p-3 text-sm break-words">{review.user}</td>
+                <td className="p-3 text-sm whitespace-nowrap">
+                  {review.date || <span className="text-red-500">No date</span>}
+                </td>
+                <td className="p-3 text-sm break-words">{review.rating} ⭐</td>
+                <td className="p-3 text-sm break-words">{review.feedback}</td>
+                <td className="p-3 text-sm break-words">
+                  <span
+                    className={
+                      review.status === "Pending"
+                        ? "text-yellow-500"
+                        : review.status === "Approved"
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }
+                  >
+                    {review.status}
+                  </span>
+                </td>
+                <td className="p-3 text-sm break-words">
+                  {review.status === "Pending" ? (
+                    <div className="flex">
+                      <button
+                        className="bg-green-500 text-white px-3 py-1 rounded mr-2 text-sm"
+                        onClick={() => handleApprove(review._id)}
+                      >
+                        Approve
+                      </button>
+                      <button
+                        className="bg-red-500 text-white px-3 py-1 rounded text-sm"
+                        onClick={() => handleReject(review._id)}
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  ) : (
+                    <div>
+                      <MdDelete
+                        onClick={() => handleDelete(review._id)}
+                        className="text-2xl text-center text-red-500"
+                      />
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Pagination Component */}
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
+    </div>
+  );
 };
 
 export default AdminReviewPage;

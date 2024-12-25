@@ -1,6 +1,4 @@
-import {
-    createBrowserRouter,
-  } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import About from "../Pages/About/About";
@@ -21,92 +19,93 @@ import PaymentRealHistory from "../Pages/Dashboard/paymentRealHistory/PaymentRea
 import PaymentHistory from "../Pages/Dashboard/payment_history/PaymentHistory";
 import ViewReports from "../Pages/Dashboard/viewReports/ViewReports";
 import AdminReviewPage from "../Pages/Dashboard/adminReviewpage/AdminReviewPage";
-import AddStudents from "../Pages/Dashboard/addStudents/AddStudent";
 import AddStudent from "../Pages/Dashboard/addStudents/AddStudent";
 
-  export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main></Main>,
-      errorElement: <NotFound></NotFound>,
-      children:[
-        {
-            path: '/',
-            element:<Home></Home>
-        },
-        {
-            path: '/about',
-            element:<About></About>
-        },
-        {
-            path: '/contact',
-            element:<Contact></Contact>
-        },
-        {
-            path: '/admission',
-            element:<PrivetRoute><Admission></Admission></PrivetRoute>
-        },
-        {
-            path: '/PreviewPage',
-            element: <PreviewPage></PreviewPage>
-        },
-        {
-            path: '/classes',
-            element: <Classes></Classes>
-        },
-        {
-            path: '/login',
-            element: <Login></Login>
-        },
-        {
-            path: '/SignUP',
-            element: <SignUp></SignUp>
-        }
-      ]
-    },
-    {
-      path: "/dashboard",
-      element:  <Dashboard></Dashboard>,
-      errorElement: <NotFound></NotFound>,
-      children:[
-        {
-            path: 'adminHome',
-            element:<AdminHome></AdminHome>
-        },
-        {
-            path: 'studentManage',
-            element:<StudentManagement></StudentManagement>
-        },
-        {
-            path: 'teacherMange',
-            element:<TeacherManagement></TeacherManagement>
-        },
-        {
-            path: 'allUsers',
-            element:<AllUsers></AllUsers>
-        },
-        {
-            path: 'paymentRealHistory',
-            element:<PaymentRealHistory></PaymentRealHistory>
-        },
-        {
-            path: 'paymentHistory',
-            element:<PaymentHistory></PaymentHistory>
-        },
-        {
-            path: 'viewReports',
-            element:<ViewReports></ViewReports>
-        },
-        {
-            path: 'review',
-            element:<AdminReviewPage></AdminReviewPage>
-        },
-        {
-            path: 'addStudent',
-            element:<AddStudent></AddStudent>
-        },
-       
-        
-      ]
-    },
-  ]);
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main></Main>,
+    errorElement: <NotFound></NotFound>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
+      {
+        path: "/admission",
+        element: (
+          <PrivetRoute>
+            <Admission></Admission>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/PreviewPage",
+        element: <PreviewPage></PreviewPage>,
+      },
+      {
+        path: "/classes",
+        element: <Classes></Classes>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/SignUP",
+        element: <SignUp></SignUp>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    errorElement: <NotFound></NotFound>,
+    children: [
+      {
+        path: "adminHome",
+        element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "studentManage",
+        element: <StudentManagement></StudentManagement>,
+      },
+      {
+        path: "teacherMange",
+        element: <TeacherManagement></TeacherManagement>,
+      },
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "paymentRealHistory",
+        element: <PaymentRealHistory></PaymentRealHistory>,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "viewReports",
+        element: <ViewReports></ViewReports>,
+      },
+      {
+        path: "review",
+        element: <AdminReviewPage></AdminReviewPage>,
+      },
+      {
+        path: "addStudent",
+        element: <AddStudent></AddStudent>,
+      },
+    ],
+  },
+]);
