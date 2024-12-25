@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { MdDelete } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
 import Rating from "react-rating-stars-component";
 import Swal from "sweetalert2";
 import Pagination from "../../../Components/Pagination/Pagination";
@@ -9,6 +10,10 @@ import Pagination from "../../../Components/Pagination/Pagination";
 const AdminReviewPage = () => {
   const axiosPublic = useAxiosPublic();
   const [filter, setFilter] = useState("All");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [ratingFilter, setRatingFilter] = useState("All");
+  const [dateFilter, setDateFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 15; // Number of reviews per page
 
@@ -93,11 +98,38 @@ const AdminReviewPage = () => {
     });
   };
 
-  const filteredReviews =
-    filter === "All"
-      ? reviews
-      : reviews.filter((review) => review.status === filter);
+  // Debounce the search term
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 500); // 2-second delay
 
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm]);
+
+  // Reset Filters
+  const handleResetFilters = () => {
+    setFilter("All");
+    setSearchTerm("");
+    setDebouncedSearchTerm("");
+    setRatingFilter("All");
+    setDateFilter("");
+    setCurrentPage(1);
+  };
+
+  // Filter logic
+  const filteredReviews = reviews.filter((review) => {
+    const matchesStatus = filter === "All" || review.status === filter;
+    const matchesUserName = review.user
+      .toLowerCase()
+      .includes(debouncedSearchTerm.toLowerCase());
+    const matchesRating =
+      ratingFilter === "All" || review.rating === parseInt(ratingFilter);
+    const matchesDate =
+      !dateFilter || new Date(review.date).toLocaleDateString() === dateFilter;
+
+    return matchesStatus && matchesUserName && matchesRating && matchesDate;
+  });
   // Pagination logic
   const indexOfLastReview = currentPage * usersPerPage;
   const indexOfFirstReview = indexOfLastReview - usersPerPage;
@@ -117,26 +149,75 @@ const AdminReviewPage = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold mb-6">Admin Review Page</h1>
+      <h1 className="text-2xl font-bold text-gray-700 mb-6">
+        Review Management
+      </h1>
 
-      <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
-        <div className="mb-2 sm:mb-0">
+      <div className="bg-white p-4 rounded-lg shadow-md flex gap-4 mb-2">
+        {/* Filter by Status */}
+        <div>
+          <p className="font-semibold">Status</p>
           <select
-            className="p-2 border rounded-lg bg-white"
+            className="py-2 border rounded-lg bg-white"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           >
             <option value="All">All</option>
             <option value="Pending">Pending</option>
-            <option value="Reviewed">Reviewed</option>
+            <option value="Approved">Approved</option>
             <option value="Rejected">Rejected</option>
           </select>
         </div>
-        <div className="text-gray-600">
-          Total Reviews: {filteredReviews.length}
+
+        {/* Filter by Rating */}
+        <div>
+          <p className="font-semibold">Rating</p>
+          <select
+            className="p-2 border rounded-lg bg-white"
+            value={ratingFilter}
+            onChange={(e) => setRatingFilter(e.target.value)}
+          >
+            <option value="All">All Ratings</option>
+            <option value="1">1 Star</option>
+            <option value="2">2 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="5">5 Stars</option>
+          </select>
+        </div>
+
+        {/* Filter by Date */}
+        <div>
+          <p className="font-semibold">Date</p>
+          <input
+            type="date"
+            className="p-2 border rounded-lg"
+            value={dateFilter}
+            onChange={(e) => setDateFilter(e.target.value)}
+          />
+        </div>
+        {/* Search by User */}
+
+        <div className="relative flex-grow">
+          <input
+            type="text"
+            placeholder="Search by user name"
+            className="p-2 mt-6 border rounded-lg w-full flex-grow"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <IoSearch className="absolute right-2 top-10" />
+        </div>
+        {/* Reset Button */}
+        <div>
+          <button
+            className="bg-gray-500 text-white px-4 py-2 mt-6 rounded-lg"
+            onClick={handleResetFilters}
+          >
+            Reset Filters
+          </button>
         </div>
       </div>
-
       <div className="overflow-x-auto">
         <table className="w-full table-auto bg-white rounded-lg shadow-md">
           <thead>
